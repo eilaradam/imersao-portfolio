@@ -187,6 +187,35 @@
   .teach-photo { flex-shrink:0; width:92px; height:116px; border-radius:18px; background:linear-gradient(160deg,#3CB371,#1A4A3A); display:grid; place-items:center; overflow:hidden; }
   .teach-photo svg { width:42px; height:42px; fill:rgba(255,255,255,.8); }
   .teach-photo img { width:92px; height:116px; object-fit:cover; object-position:center top; border-radius:18px; display:block; }
+
+  /* Diferenciar a seção 'para quem é / não é' com um fundo próprio */
+  .fit-band { background:#E8F1EB; }
+
+  /* Cronograma compacto (mesclado dentro dos módulos) */
+  .schedule { max-width:780px; margin:50px auto 0; text-align:center; }
+  .schedule .sched-head { font-weight:700; font-size:15.5px; color:var(--verde-escuro); margin-bottom:18px; }
+  .sched-times { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+  .sched-times span { background:#fff; border-radius:999px; padding:10px 18px; font-size:14px; box-shadow:var(--shadow); color:var(--texto-mute); }
+  .sched-times span b { color:var(--verde-escuro); margin-right:5px; }
+
+  /* Hover nos cards e fotos */
+  .teach-card, .fit-card, .module, .model-card, .price-inner { transition:transform .25s ease, box-shadow .25s ease; }
+  .teach-card:hover, .fit-card:hover, .model-card:hover { transform:translateY(-5px); box-shadow:0 16px 36px rgba(0,0,0,.13); }
+  .teach-card:hover .teach-photo img { transform:scale(1.06); }
+  .teach-photo img { transition:transform .45s ease; }
+
+  /* Revelar seções ao rolar (sem flash: depende da classe .js no html) */
+  .js section:not(:first-of-type) { opacity:0; transform:translateY(30px); transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); }
+  .js section.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .js section:not(:first-of-type){ opacity:1; transform:none; transition:none; } }
+
+  /* Botão fixo de CTA */
+  .sticky-cta { position:fixed; left:0; right:0; bottom:0; z-index:60; background:rgba(255,255,255,.96); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 -4px 20px rgba(0,0,0,.1); padding:12px 18px; display:flex; align-items:center; justify-content:center; gap:18px; transform:translateY(130%); transition:transform .35s ease; }
+  .sticky-cta.show { transform:none; }
+  .sticky-cta .sc-text { font-weight:700; font-size:14.5px; color:var(--texto); }
+  .sticky-cta .sc-text b { color:var(--verde-cta); }
+  .sticky-cta .btn-cta { padding:12px 24px; font-size:15px; white-space:nowrap; }
+  @media (max-width:600px){ .sticky-cta .sc-text { display:none; } .sticky-cta { padding:10px 14px; } .sticky-cta .btn-cta { width:100%; justify-content:center; text-align:center; } }
   .teach-card h3 { font-size:20px; font-weight:800; }
   .teach-role { display:inline-block; font-size:13px; font-weight:600; color:var(--verde-cta); margin:2px 0 10px; }
   .teach-card p { font-size:14.5px; color:var(--texto-mute); line-height:1.5; }
@@ -349,6 +378,7 @@
 </style>
 </head>
 <body>
+<script>document.documentElement.classList.add('js')</script>
 
 <!-- ═══ SEÇÃO 1 · HERO ═══ -->
 <section class="hero">
@@ -463,7 +493,7 @@
 </section>
 
 <!-- ═══ SEÇÃO 6 · PARA QUEM É / NÃO É ═══ -->
-<section>
+<section class="fit-band">
   <div class="wrap">
     <h2 class="section-title">Essa Imersão é para quem quer <span class="it">sair com resultado.</span></h2>
     <p style="text-align:center; color:var(--texto-mute); margin-top:12px; font-weight:600">Veja se é para você:</p>
@@ -474,6 +504,7 @@
           <li><span class="mk">❌</span> Quer aprender design desde zero ou dominar programação.</li>
           <li><span class="mk">❌</span> Não está disposta a colocar a mão na massa durante 2 dias.</li>
           <li><span class="mk">❌</span> Prefere ficar com portfolio no Canva ou não ter portfolio.</li>
+          <li><span class="mk">❌</span> Acha que basta ter portfolio e as marcas vêm sozinhas, sem esforço.</li>
         </ul>
       </div>
       <div class="fit-card yes">
@@ -516,6 +547,15 @@
         <div class="module"><div class="bar"></div><div><div class="num">03</div><h4>Criando o site com Claude</h4><p>Copiando prompts prontos, deixando com seu estilo e entendendo como funciona.</p></div></div>
         <div class="module"><div class="bar"></div><div><div class="num">04</div><h4>Hospedando e customizando</h4><p>Subindo tudo na Hostinger, testando, ajustando. Sair com site 100% online.</p></div></div>
         <div class="module"><div class="bar" style="background:#F5B301"></div><div><div class="num" style="color:#b8860b">BÔNUS</div><h4>Feedback profissional</h4><p>Julia Eduarda revisa seu portfolio e dá feedback especializado do que funciona pro lado das marcas.</p></div></div>
+      </div>
+    </div>
+    <div class="schedule">
+      <div class="sched-head">🗓️ 11 e 12 de Julho · Sáb &amp; Dom · 10h às 17h · 100% online no Zoom</div>
+      <div class="sched-times">
+        <span><b>10h00</b> Início</span>
+        <span><b>12h30</b> Almoço</span>
+        <span><b>14h00</b> Retorno</span>
+        <span><b>17h00</b> Encerramento</span>
       </div>
     </div>
   </div>
@@ -606,12 +646,9 @@
 <!-- ═══ SEÇÃO 9 · BANNER MOTIVACIONAL ═══ -->
 <section class="banner">
   <div class="wrap">
-    <div class="grid">
-      <div>
-        <h2>Portfolio profissional não é luxo.</h2>
-        <p class="quote">É a porta de entrada pra fechar marca.</p>
-      </div>
-      <div class="banner-photo"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z"/></svg></div>
+    <div style="text-align:center; max-width:840px; margin:0 auto">
+      <h2>Portfolio profissional não é luxo.</h2>
+      <p class="quote">É a porta de entrada pra fechar marca.</p>
     </div>
   </div>
 </section>
@@ -638,36 +675,6 @@
           <li>✅ Credibilidade que aumenta seu valor de cachê</li>
           <li>✅ Está tudo num lugar e funciona 24/7</li>
         </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SEÇÃO 11 · COMO FUNCIONA O DIA ═══ -->
-<section class="day">
-  <div class="wrap">
-    <h2 class="section-title">Como vai <span class="it">funcionar</span> o fim de semana</h2>
-    <p style="text-align:center; color:var(--texto-mute); margin-top:12px; font-weight:600">100% online no Zoom | 11 e 12 de Julho · 10:00 às 17:00</p>
-    <div class="grid">
-      <div class="timeline">
-        <div class="tl-item"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div><div class="when">10h00 — Início</div></div></div>
-        <div class="tl-item"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div><div class="when">12h30 — Pausa para almoço</div></div></div>
-        <div class="tl-item"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div><div class="when">14h00 — Retorno</div></div></div>
-        <div class="tl-item"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div><div class="when">17h00 — Encerramento</div></div></div>
-      </div>
-      <div class="day-cards">
-        <div class="day-card">
-          <h4>📅 Dia 1 (Sábado)</h4>
-          <li>✓ Entendimento do Portfolio</li>
-          <li>✓ Estrutura Profissional</li>
-          <li>✓ Começar a Criar</li>
-        </div>
-        <div class="day-card">
-          <h4>📅 Dia 2 (Domingo)</h4>
-          <li>✓ Finalizar o Site</li>
-          <li>✓ Hospedagem e Testes</li>
-          <li>✓ Customizações Finais</li>
-        </div>
       </div>
     </div>
   </div>
@@ -779,6 +786,11 @@
   <p>Desenvolvido por Lara Dam</p>
 </footer>
 
+<div class="sticky-cta" id="stickyCta">
+  <span class="sc-text">Imersão Portfolio Claude · <b>R$197</b> · vagas limitadas 🔥</span>
+  <a href="#pricing" class="btn-cta">Garantir meu ingresso →</a>
+</div>
+
 <script>
   // Accordion FAQ
   document.querySelectorAll('.faq-q').forEach(function(btn){
@@ -810,6 +822,27 @@
     });
   }, { threshold: .4 });
   bars.forEach(function(b){ io.observe(b); });
+
+  // Revelar seções ao rolar
+  var revObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target); } });
+  }, { rootMargin:'0px 0px -8% 0px', threshold:.01 });
+  document.querySelectorAll('section').forEach(function(s, i){ if(i>0) revObs.observe(s); });
+
+  // Botão fixo de CTA aparece ao rolar e some quando o preço está visível
+  var sticky = document.getElementById('stickyCta');
+  var pricingEl = document.getElementById('pricing');
+  function toggleSticky(){
+    var y = window.scrollY || window.pageYOffset;
+    var show = y > 700;
+    if(pricingEl){
+      var r = pricingEl.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0) show = false;
+    }
+    if(sticky) sticky.classList.toggle('show', show);
+  }
+  window.addEventListener('scroll', toggleSticky, { passive:true });
+  toggleSticky();
 </script>
 </body>
 </html>
