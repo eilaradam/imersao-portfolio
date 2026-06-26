@@ -159,6 +159,22 @@
   .pain-foot { text-align:center; margin-top:40px; font-size:clamp(20px,2.6vw,28px); font-weight:700; }
   .pain-foot .it { display:block; margin-top:4px; font-size:1.15em; }
 
+  /* Chat / DM (seção das dores) */
+  .chat { max-width:640px; margin:46px auto 0; display:flex; flex-direction:column; gap:20px; }
+  .bub { max-width:82%; padding:17px 22px; font-size:16.5px; line-height:1.45; font-weight:500; color:var(--texto); position:relative; box-shadow:0 6px 18px rgba(0,0,0,.08); }
+  .bub.l { align-self:flex-start; background:#fff; border-radius:22px 22px 22px 6px; }
+  .bub.r { align-self:flex-end; background:var(--mint); border-radius:22px 22px 6px 22px; }
+  .bub .re { position:absolute; bottom:-13px; font-size:20px; line-height:1; background:#fff; border-radius:50%; padding:3px 5px; box-shadow:0 2px 7px rgba(0,0,0,.13); }
+  .bub.l .re { right:14px; }
+  .bub.r .re { left:14px; }
+  .js .chat .bub { opacity:0; transform:translateY(14px) scale(.98); transition:opacity .5s ease, transform .5s ease; }
+  .js section.in .chat .bub { opacity:1; transform:none; }
+  .js section.in .chat .bub:nth-child(2){ transition-delay:.13s; }
+  .js section.in .chat .bub:nth-child(3){ transition-delay:.26s; }
+  .js section.in .chat .bub:nth-child(4){ transition-delay:.39s; }
+  .js section.in .chat .bub:nth-child(5){ transition-delay:.52s; }
+  @media (prefers-reduced-motion: reduce){ .js .chat .bub { opacity:1; transform:none; transition:none; } }
+
   /* ─── SOCIAL PROOF ───────────────────────── */
   .proof { background:var(--verde-escuro); color:#fff; }
   .proof h2 { color:#fff; }
@@ -455,12 +471,12 @@
 <section>
   <div class="wrap">
     <h2 class="section-title">Você cria conteúdo de qualidade. Mas o portfolio não reflete isso.</h2>
-    <div class="pain-grid">
-      <div class="pain-card"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Tenta fazer portfolio no Canva e fica com cara de amadora.</div>
-      <div class="pain-card"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Não sabe hospedar a página, fica complicado e caro.</div>
-      <div class="pain-card"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Enrola pra fazer portfolio porque parece coisa de dev.</div>
-      <div class="pain-card"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Tem vários vídeos bons, mas não consegue organizar tudo direitinho.</div>
-      <div class="pain-card center"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Vê criadores sem portfolio fechando brand e acha que não vale investir.</div>
+    <div class="chat">
+      <div class="bub l">Tenta fazer portfolio no Canva e fica com cara de amadora. <span class="re">😬</span></div>
+      <div class="bub r">Não sabe hospedar a página, fica complicado e caro. <span class="re">😵‍💫</span></div>
+      <div class="bub l">Enrola pra fazer portfolio porque parece coisa de dev. <span class="re">🙄</span></div>
+      <div class="bub r">Tem vários vídeos bons, mas não consegue organizar tudo direitinho. <span class="re">🎬</span></div>
+      <div class="bub l">Vê criadoras sem portfolio fechando brand e acha que não vale investir. <span class="re">😩</span></div>
     </div>
     <p class="pain-foot">O problema não é falta de conteúdo.<span class="it">É falta de um portfólio que trabalhe pra você.</span></p>
   </div>
