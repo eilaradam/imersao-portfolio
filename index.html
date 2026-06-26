@@ -205,7 +205,7 @@
   .teach-photo img { transition:transform .45s ease; }
 
   /* Revelar seções ao rolar (sem flash: depende da classe .js no html) */
-  .js section:not(:first-of-type) { opacity:0; transform:translateY(30px); transition:opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); }
+  .js section:not(:first-of-type) { opacity:0; transition:opacity .75s cubic-bezier(.2,.7,.2,1); }
   .js section.in { opacity:1; transform:none; }
   @media (prefers-reduced-motion: reduce){ .js section:not(:first-of-type){ opacity:1; transform:none; transition:none; } }
 
@@ -221,6 +221,20 @@
   .claude-badge .spark { width:25px; height:25px; flex-shrink:0; }
   .claude-badge .spark line { stroke:#CC785C; stroke-width:6.5; stroke-linecap:round; }
   .claude-badge b { font-family:var(--serif); font-weight:800; font-size:18px; margin-left:1px; }
+
+  /* Costura "pastinha" entre seções (folder tab + setinha) */
+  html { scroll-behavior:smooth; }
+  .seam { position:relative; height:60px; background:var(--from); z-index:2; }
+  .seam::after { content:""; position:absolute; left:0; right:0; bottom:0; height:34px; background:var(--to); border-radius:36px 36px 0 0; }
+  .seam__tab::before { content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-40%); width:180px; height:90px; background:radial-gradient(ellipse, var(--arrow), transparent 70%); opacity:.35; filter:blur(14px); z-index:-1; pointer-events:none; }
+  .seam__tab { position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:132px; height:54px; background:var(--to); border-radius:26px 26px 0 0; display:flex; align-items:flex-end; justify-content:center; padding-bottom:9px; color:var(--arrow); font-size:26px; font-weight:700; line-height:1; z-index:3; }
+  a.seam__tab { transition:transform .2s ease; }
+  a.seam__tab:hover { transform:translateX(-50%) translateY(3px); }
+
+  /* Anéis decorativos dourados/verdes */
+  .has-rings { position:relative; overflow:hidden; }
+  .has-rings > .wrap { position:relative; z-index:1; }
+  .ring { position:absolute; border-radius:50%; border:16px solid #F5B301; background:transparent; pointer-events:none; z-index:0; opacity:.85; }
   @media (max-width:600px){ .sticky-cta .sc-text { display:none; } .sticky-cta { padding:10px 14px; } .sticky-cta .btn-cta { width:100%; justify-content:center; text-align:center; } }
   .teach-card h3 { font-size:20px; font-weight:800; }
   .teach-role { display:inline-block; font-size:13px; font-weight:600; color:var(--verde-cta); margin:2px 0 10px; }
@@ -248,7 +262,7 @@
   .models-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:920px; margin:46px auto 0; }
   .model-card { background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .25s ease, box-shadow .25s ease; }
   .model-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); }
-  .model-preview { height:200px; position:relative; overflow:hidden; background:#f3f3f1; }
+  .model-preview { height:270px; position:relative; overflow:hidden; background:#f3f3f1; }
   .model-preview img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; transition:transform .5s ease; }
   .model-card:hover .model-preview img { transform:scale(1.05); }
   .model-body { padding:22px 24px 26px; }
@@ -452,8 +466,12 @@
   </div>
 </section>
 
+<div class="seam" style="--from:#F5F0E8;--to:#1A4A3A;--arrow:#F5B301"><a class="seam__tab" href="#quem-saiu" aria-label="Ir para a próxima seção">⌄</a></div>
+
 <!-- ═══ SEÇÃO 5 · SOCIAL PROOF ═══ -->
-<section class="proof">
+<section class="proof has-rings" id="quem-saiu">
+  <span class="ring" style="width:210px;height:210px;top:-75px;right:-70px;border-color:#F5B301" aria-hidden="true"></span>
+  <span class="ring" style="width:120px;height:120px;bottom:-50px;left:-50px;border-color:#22C55E" aria-hidden="true"></span>
   <div class="wrap">
     <h2 class="section-title">Criadores que já saíram com o <span style="color:#5df0a0">site pronto</span>:</h2>
     <div class="proof-grid">
@@ -476,8 +494,10 @@
   </div>
 </section>
 
+<div class="seam" style="--from:#1A4A3A;--to:#F5F0E8;--arrow:#16A34A"><a class="seam__tab" href="#quem-ensina" aria-label="Ir para a próxima seção">⌄</a></div>
+
 <!-- ═══ SEÇÃO 4B · QUEM ENSINA ═══ -->
-<section>
+<section id="quem-ensina">
   <div class="wrap">
     <h2 class="section-title">Você aprende com quem <span class="it">vive isso</span> no dia a dia.</h2>
     <div class="fit-grid">
@@ -502,7 +522,9 @@
 </section>
 
 <!-- ═══ SEÇÃO 6 · PARA QUEM É / NÃO É ═══ -->
-<section class="fit-band">
+<section class="fit-band has-rings">
+  <span class="ring" style="width:175px;height:175px;top:-60px;left:-60px;border-color:#F5B301" aria-hidden="true"></span>
+  <span class="ring" style="width:110px;height:110px;bottom:-45px;right:-50px;border-color:#22C55E" aria-hidden="true"></span>
   <div class="wrap">
     <h2 class="section-title">Essa Imersão é para quem quer <span class="it">sair com resultado.</span></h2>
     <p style="text-align:center; color:var(--texto-mute); margin-top:12px; font-weight:600">Veja se é para você:</p>
@@ -666,8 +688,10 @@
   </div>
 </section>
 
+<div class="seam" style="--from:#F5F0E8;--to:#1A4A3A;--arrow:#F5B301"><a class="seam__tab" href="#nao-e-luxo" aria-label="Ir para a próxima seção">⌄</a></div>
+
 <!-- ═══ SEÇÃO 9 · BANNER MOTIVACIONAL ═══ -->
-<section class="banner">
+<section class="banner" id="nao-e-luxo">
   <div class="wrap">
     <div style="text-align:center; max-width:840px; margin:0 auto">
       <h2>Portfolio profissional não é luxo.</h2>
@@ -676,8 +700,10 @@
   </div>
 </section>
 
+<div class="seam" style="--from:#1A4A3A;--to:#F5F0E8;--arrow:#16A34A"><a class="seam__tab" href="#antes-depois" aria-label="Ir para a próxima seção">⌄</a></div>
+
 <!-- ═══ SEÇÃO 10 · ANTES E DEPOIS ═══ -->
-<section>
+<section id="antes-depois">
   <div class="wrap">
     <h2 class="section-title">O que muda depois de <span class="it">2 dias de Imersão?</span></h2>
     <div class="compare">
@@ -703,8 +729,10 @@
   </div>
 </section>
 
+<div class="seam" style="--from:#F5F0E8;--to:#1A4A3A;--arrow:#F5B301"><a class="seam__tab" href="#autora" aria-label="Ir para a próxima seção">⌄</a></div>
+
 <!-- ═══ SEÇÃO 11 · PROVA SOCIAL (autora) ═══ -->
-<section class="proof">
+<section class="proof" id="autora">
   <div class="wrap" style="max-width:760px">
     <h2 class="section-title" style="color:#fff">Quem ensina isso avalia portfolio pra brand <span style="color:#5df0a0">todo dia.</span></h2>
     <p style="text-align:center; color:#cfe6da; font-size:17px; line-height:1.6; margin-top:24px">
@@ -712,6 +740,8 @@
     </p>
   </div>
 </section>
+
+<div class="seam" style="--from:#1A4A3A;--to:#F5F0E8;--arrow:#16A34A"><a class="seam__tab" href="#pricing" aria-label="Ir para a próxima seção">⌄</a></div>
 
 <!-- ═══ SEÇÃO 12 · PRICING ═══ -->
 <section id="pricing">
@@ -791,8 +821,10 @@
   </div>
 </section>
 
+<div class="seam" style="--from:#F5F0E8;--to:#1A4A3A;--arrow:#F5B301"><a class="seam__tab" href="#vaga" aria-label="Ir para a próxima seção">⌄</a></div>
+
 <!-- ═══ SEÇÃO 14 · CTA FINAL ═══ -->
-<section class="final">
+<section class="final" id="vaga">
   <div class="wrap">
     <span class="eyebrow">🖥️ 100% online no Zoom | 11 e 12 de Julho · 10:00 às 17:00</span>
     <h2>Você passou 6 meses criando conteúdo de qualidade. Agora é hora de um portfolio que <span class="it">trabalha pra você.</span></h2>
