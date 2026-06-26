@@ -435,16 +435,33 @@
   .banner-photo svg { width:90px; height:90px; fill:rgba(255,255,255,.7); }
 
   /* ─── ANTES / DEPOIS ─────────────────────── */
-  .compare { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:880px; margin:44px auto 0; }
-  .compare .col { border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
-  .compare .head { padding:18px; text-align:center; font-weight:800; letter-spacing:.5px; font-size:15px; }
-  .compare .no .head { background:#fff; color:var(--texto); }
-  .compare .yes .head { background:var(--verde-escuro); color:#fff; }
-  .compare .body { padding:8px 24px 22px; }
-  .compare .no .body { background:#fff; }
-  .compare .yes .body { background:#1f5644; color:#fff; }
-  .compare li { list-style:none; display:flex; gap:11px; padding:14px 0; border-bottom:1px solid rgba(0,0,0,.07); font-size:15px; align-items:flex-start; }
-  .compare .yes li { border-bottom-color:rgba(255,255,255,.12); }
+  /* ─── ANTES / DEPOIS (interativo) ─── */
+  .ad-toggle { position:relative; display:flex; max-width:430px; margin:36px auto 0; background:#eae2d6; border-radius:50px; padding:5px; }
+  .ad-toggle .ad-tab { flex:1; position:relative; z-index:2; border:none; background:none; cursor:pointer; font-family:var(--sans); font-weight:700; font-size:14.5px; padding:12px 8px; border-radius:50px; color:var(--texto-mute); transition:color .25s ease; }
+  .ad-toggle .ad-tab.on { color:#fff; }
+  .ad-thumb { position:absolute; z-index:1; top:5px; left:5px; width:calc(50% - 5px); height:calc(100% - 10px); border-radius:50px; transition:transform .4s cubic-bezier(.4,1.25,.5,1), background .35s ease, box-shadow .35s ease; }
+  .ad-toggle[data-active="antes"] .ad-thumb { transform:translateX(0); background:#c2503a; box-shadow:0 6px 16px rgba(194,80,58,.32); }
+  .ad-toggle[data-active="depois"] .ad-thumb { transform:translateX(100%); background:var(--verde-cta); box-shadow:0 6px 16px rgba(22,163,74,.32); }
+  .ad-stage { position:relative; max-width:620px; margin:24px auto 0; }
+  .ad-panel { border-radius:22px; padding:30px 26px; box-shadow:var(--shadow); opacity:0; position:absolute; inset:0; pointer-events:none; transform:translateY(14px) scale(.985); transition:opacity .4s ease, transform .4s ease; }
+  .ad-panel.on { opacity:1; position:relative; pointer-events:auto; transform:none; }
+  .ad-panel.antes { background:#fff; }
+  .ad-panel.depois { background:linear-gradient(160deg,#1f5644,#143a2d); color:#fff; }
+  .ad-emoji { font-size:38px; text-align:center; line-height:1; }
+  .ad-sum { text-align:center; font-family:var(--serif); font-style:italic; font-size:20px; line-height:1.32; margin:12px auto 20px; max-width:430px; }
+  .ad-panel.antes .ad-sum { color:#8a4d3f; }
+  .ad-list { list-style:none; display:flex; flex-direction:column; }
+  .ad-list li { display:flex; gap:13px; align-items:flex-start; padding:14px 4px; font-size:15.5px; font-weight:500; border-top:1px solid rgba(0,0,0,.07); opacity:0; transform:translateY(8px); }
+  .ad-list li:first-child { border-top:none; }
+  .ad-panel.depois .ad-list li { border-top-color:rgba(255,255,255,.12); }
+  .ad-panel.on .ad-list li { animation:adIn .45s ease forwards; }
+  .ad-panel.on .ad-list li:nth-child(1){ animation-delay:.05s } .ad-panel.on .ad-list li:nth-child(2){ animation-delay:.13s }
+  .ad-panel.on .ad-list li:nth-child(3){ animation-delay:.21s } .ad-panel.on .ad-list li:nth-child(4){ animation-delay:.29s }
+  @keyframes adIn { to { opacity:1; transform:none; } }
+  .ad-list .mk { flex-shrink:0; width:24px; height:24px; border-radius:50%; display:grid; place-items:center; font-size:12px; font-weight:800; margin-top:1px; }
+  .ad-list .mk.x { background:#f6dcd4; color:#c2503a; }
+  .ad-list .mk.ck { background:rgba(34,197,94,.2); color:#7df0a8; }
+  @media (max-width:560px){ .ad-sum { font-size:18px; } .ad-panel { padding:26px 20px; } .ad-toggle .ad-tab { font-size:13.5px; } }
   .compare li:last-child { border-bottom:none; }
 
   /* ─── COMO FUNCIONA O DIA ─────────────────── */
@@ -830,23 +847,30 @@
 <section id="antes-depois">
   <div class="wrap">
     <h2 class="section-title">O que muda depois de <span class="it">2 dias de Imersão?</span></h2>
-    <div class="compare">
-      <div class="col no">
-        <div class="head">SEM O PORTFÓLIO</div>
-        <ul class="body">
-          <li>❌ Manda currículo ou reel solto pra marca</li>
-          <li>❌ Sem lugar centralizado pra mostrar trabalhos</li>
-          <li>❌ Perde oportunidade por não ter credibilidade visual</li>
-          <li>❌ Gasta tempo respondendo "qual é seu portfólio?"</li>
+    <div class="ad-toggle" data-active="antes">
+      <button type="button" class="ad-tab on" data-state="antes">Como é hoje</button>
+      <button type="button" class="ad-tab" data-state="depois">Depois da imersão</button>
+      <span class="ad-thumb" aria-hidden="true"></span>
+    </div>
+    <div class="ad-stage">
+      <div class="ad-panel antes on">
+        <div class="ad-emoji">😩</div>
+        <div class="ad-sum">Você manda reel solto e torce pra marca te levar a sério.</div>
+        <ul class="ad-list">
+          <li><span class="mk x">✕</span>Manda currículo ou reel solto pra marca</li>
+          <li><span class="mk x">✕</span>Sem um lugar centralizado pra mostrar seus trabalhos</li>
+          <li><span class="mk x">✕</span>Perde oportunidade por falta de credibilidade visual</li>
+          <li><span class="mk x">✕</span>Gasta tempo respondendo "qual é o seu portfólio?"</li>
         </ul>
       </div>
-      <div class="col yes">
-        <div class="head">COM O PORTFÓLIO</div>
-        <ul class="body">
-          <li>✅ Você mesma é encontrada pelas marcas</li>
-          <li>✅ Portfólio profissional falando por você</li>
-          <li>✅ Credibilidade que aumenta seu valor de cachê</li>
-          <li>✅ Está tudo num lugar e funciona 24/7</li>
+      <div class="ad-panel depois">
+        <div class="ad-emoji">✨</div>
+        <div class="ad-sum">As marcas te encontram e o portfólio fecha por você.</div>
+        <ul class="ad-list">
+          <li><span class="mk ck">✓</span>Você mesma é encontrada pelas marcas</li>
+          <li><span class="mk ck">✓</span>Um portfólio profissional falando por você</li>
+          <li><span class="mk ck">✓</span>Credibilidade que aumenta o seu cachê</li>
+          <li><span class="mk ck">✓</span>Está tudo num lugar e funciona 24 horas por dia</li>
         </ul>
       </div>
     </div>
@@ -1070,6 +1094,20 @@
     // carrega o primeiro site só depois da página pronta, pra não travar o carregamento
     if(document.readyState === 'complete'){ ensure(sites[0]); }
     else { window.addEventListener('load', function(){ ensure(sites[0]); }); }
+  })();
+
+  // Antes / Depois: alterna entre "como é hoje" e "depois da imersão"
+  (function(){
+    var tg = document.querySelector('.ad-toggle');
+    if(!tg) return;
+    var tabs = tg.querySelectorAll('.ad-tab');
+    var panels = document.querySelectorAll('#antes-depois .ad-panel');
+    function set(state){
+      tg.setAttribute('data-active', state);
+      tabs.forEach(function(t){ t.classList.toggle('on', t.dataset.state === state); });
+      panels.forEach(function(p){ p.classList.toggle('on', p.classList.contains(state)); });
+    }
+    tabs.forEach(function(t){ t.addEventListener('click', function(){ set(t.dataset.state); }); });
   })();
 </script>
 </body>
