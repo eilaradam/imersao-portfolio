@@ -242,7 +242,9 @@
   .models-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:920px; margin:46px auto 0; }
   .model-card { background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .25s ease, box-shadow .25s ease; }
   .model-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); }
-  .model-preview { height:200px; padding:18px; display:flex; flex-direction:column; gap:10px; position:relative; overflow:hidden; }
+  .model-preview { height:200px; position:relative; overflow:hidden; background:#f3f3f1; }
+  .model-preview img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; transition:transform .5s ease; }
+  .model-card:hover .model-preview img { transform:scale(1.05); }
   .model-body { padding:22px 24px 26px; }
   .model-body h3 { font-size:20px; font-weight:800; margin-bottom:6px; }
   .model-body p { font-size:14.5px; color:var(--texto-mute); line-height:1.5; margin-bottom:16px; }
@@ -565,76 +567,90 @@
 <section>
   <div class="wrap">
     <h2 class="section-title">Escolha seu <span class="it">estilo de portfolio</span></h2>
-    <p style="text-align:center; color:var(--texto-mute); margin-top:12px; font-weight:600">Você recebe 4 modelos diferentes prontos pra customizar</p>
-    <div style="text-align:center"><span class="badge-bonus">4 modelos de bônus</span></div>
+    <p style="text-align:center; color:var(--texto-mute); margin-top:12px; font-weight:600">Você recebe 15 modelos prontos pra customizar — esses são alguns:</p>
+    <div style="text-align:center"><span class="badge-bonus">15 modelos de bônus</span></div>
     <div class="models-grid">
 
       <div class="model-card">
-        <div class="model-preview p-clean">
-          <div class="mk-row"><div class="mk-bar l1"></div></div>
-          <div class="mk-bar l2"></div>
-          <div class="mk-tiles"><div></div><div></div><div></div></div>
-        </div>
+        <div class="model-preview"><img src="modelos/retro-y2k.jpg" alt="Modelo Retrô Y2K" loading="lazy"></div>
         <div class="model-body">
-          <h3>Minimalista Clean</h3>
-          <p>Simples, direto e profissional. Para quem quer foco total no trabalho.</p>
+          <h3>Retrô Y2K</h3>
+          <p>Nostalgia dos anos 2000: divertido, colorido e cheio de personalidade.</p>
           <div class="model-swatches">
-            <span class="sw" style="background:#1a1a1a"></span>
-            <span class="sw" style="background:#bdbdbd"></span>
-            <span class="sw" style="background:#f3f3f1"></span>
-            <span class="lbl">Tons neutros</span>
+            <span class="sw" style="background:#9ED8FF"></span>
+            <span class="sw" style="background:#C9A6D6"></span>
+            <span class="sw" style="background:#FF9FC4"></span>
+            <span class="lbl">Azul Y2K</span>
           </div>
         </div>
       </div>
 
       <div class="model-card">
-        <div class="model-preview p-bold">
-          <div class="mk-row"><div class="mk-avatar"></div><div style="display:flex;flex-direction:column;gap:6px;justify-content:center"><div class="mk-bar l1"></div><div class="mk-bar l2"></div></div></div>
-          <div class="mk-tiles"><div></div><div></div><div></div></div>
-        </div>
+        <div class="model-preview"><img src="modelos/romantico-rosa.jpg" alt="Modelo Romântico Rosa" loading="lazy"></div>
         <div class="model-body">
-          <h3>Creator Bold</h3>
-          <p>Colorido e moderno. Personalidade em primeiro plano.</p>
+          <h3>Romântico Rosa</h3>
+          <p>Delicado e elegante em tons de rosa. Um clima soft e bem feminino.</p>
           <div class="model-swatches">
-            <span class="sw" style="background:#22C55E"></span>
-            <span class="sw" style="background:#FACC15"></span>
-            <span class="sw" style="background:#EC4899"></span>
-            <span class="lbl">Verde vibrante</span>
+            <span class="sw" style="background:#E97CAA"></span>
+            <span class="sw" style="background:#F4A6C9"></span>
+            <span class="sw" style="background:#FBD3E4"></span>
+            <span class="lbl">Rosa romântico</span>
           </div>
         </div>
       </div>
 
       <div class="model-card">
-        <div class="model-preview p-premium">
-          <div class="mk-row"><div class="mk-bar l1"></div></div>
-          <div class="mk-bar l2"></div>
-          <div class="mk-tiles"><div></div><div></div><div></div></div>
-        </div>
+        <div class="model-preview"><img src="modelos/verde-limao.jpg" alt="Modelo Verde Limão" loading="lazy"></div>
         <div class="model-body">
-          <h3>Elegância Premium</h3>
-          <p>Sofisticado e requintado. Para o alto padrão.</p>
+          <h3>Verde Limão</h3>
+          <p>Fresco e vibrante. Verde que chama atenção sem perder o profissional.</p>
           <div class="model-swatches">
-            <span class="sw" style="background:#D4AF37"></span>
-            <span class="sw" style="background:#1f1f1f"></span>
-            <span class="sw" style="background:#ffffff"></span>
-            <span class="lbl">Ouro &amp; grafite</span>
+            <span class="sw" style="background:#C3E376"></span>
+            <span class="sw" style="background:#8FC9EC"></span>
+            <span class="sw" style="background:#1F7A4A"></span>
+            <span class="lbl">Verde limão</span>
           </div>
         </div>
       </div>
 
       <div class="model-card">
-        <div class="model-preview p-energetic">
-          <div class="mk-row"><div class="mk-avatar"></div><div style="display:flex;flex-direction:column;gap:6px;justify-content:center"><div class="mk-bar l1"></div><div class="mk-bar l2"></div></div></div>
-          <div class="mk-tiles"><div>▲</div><div>●</div><div>■</div><div>★</div></div>
-        </div>
+        <div class="model-preview"><img src="modelos/coquette.jpg" alt="Modelo Coquette" loading="lazy"></div>
         <div class="model-body">
-          <h3>Energético Moderno</h3>
-          <p>Vivo e atualizado. Mostra movimento e energia.</p>
+          <h3>Coquette</h3>
+          <p>Charme coquette, romântico e atual. Tons creme, rosa e vermelho.</p>
           <div class="model-swatches">
-            <span class="sw" style="background:#22C55E"></span>
-            <span class="sw" style="background:#eef7f0"></span>
-            <span class="sw" style="background:#9bbfa8"></span>
-            <span class="lbl">Verde claro</span>
+            <span class="sw" style="background:#C48F8C"></span>
+            <span class="sw" style="background:#EDE3D2"></span>
+            <span class="sw" style="background:#B23A47"></span>
+            <span class="lbl">Coquette</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <div class="model-preview"><img src="modelos/fitness.jpg" alt="Modelo Fitness Stickers" loading="lazy"></div>
+        <div class="model-body">
+          <h3>Fitness Stickers</h3>
+          <p>Energético e descontraído, com stickers. Pra creators fitness e lifestyle.</p>
+          <div class="model-swatches">
+            <span class="sw" style="background:#E84F8C"></span>
+            <span class="sw" style="background:#F0E3C6"></span>
+            <span class="sw" style="background:#D17976"></span>
+            <span class="lbl">Fitness</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <div class="model-preview"><img src="modelos/streaming.jpg" alt="Modelo Streaming" loading="lazy"></div>
+        <div class="model-body">
+          <h3>Streaming</h3>
+          <p>Estilo plataforma de streaming: fundo escuro, vermelho e super impactante.</p>
+          <div class="model-swatches">
+            <span class="sw" style="background:#E50914"></span>
+            <span class="sw" style="background:#141414"></span>
+            <span class="sw" style="background:#B81D24"></span>
+            <span class="lbl">Streaming dark</span>
           </div>
         </div>
       </div>
