@@ -289,7 +289,7 @@
   .hero-split p.lead b { color:var(--texto); }
   .hs-social { display:flex; align-items:center; gap:13px; margin-top:28px; }
   .hs-av { display:flex; }
-  .hs-av span { width:60px; height:60px; border-radius:50%; border:3px solid #fff; margin-left:-16px;
+  .hs-av span { width:78px; height:78px; border-radius:50%; border:3px solid #fff; margin-left:-18px;
     background-size:cover; background-position:center top; box-shadow:0 4px 12px rgba(20,50,40,.18); }
   .hs-av span:first-child { margin-left:0; }
   .hs-scount b { display:block; font-weight:800; font-size:16px; }
@@ -347,7 +347,8 @@
     .hero-split p.lead { width:100%; max-width:520px; }
     .hs-social { justify-content:center; }
     .hs-feats { justify-content:center; }
-    .hs-card { max-width:400px; margin:0 auto; width:100%; }
+    .hero-split .hs-shot, .hero-split .hs-tabs, .hero-split .hs-clabel, .hero-split .hs-claude-float { display:none; }
+    .hs-card { max-width:340px; margin:0 auto; width:100%; padding:16px; }
     .hs-glow { right:50%; transform:translateX(50%); top:auto; bottom:-120px; }
   }
   @media (max-width:560px){
@@ -1109,8 +1110,10 @@
     fit();
     window.addEventListener('resize', fit, { passive:true });
     // carrega o primeiro site só depois da página pronta, pra não travar o carregamento
-    if(document.readyState === 'complete'){ ensure(sites[0]); }
-    else { window.addEventListener('load', function(){ ensure(sites[0]); }); }
+    if(window.innerWidth > 900){
+      if(document.readyState === 'complete'){ ensure(sites[0]); }
+      else { window.addEventListener('load', function(){ ensure(sites[0]); }); }
+    }
   })();
 
   // Antes / Depois: alterna entre "como é hoje" e "depois da imersão"
