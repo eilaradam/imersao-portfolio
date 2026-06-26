@@ -263,6 +263,29 @@
   .fan-badge { position:absolute; top:-14px; left:198px; z-index:10; background:#F5B301; color:#5a4200; font-weight:800; font-size:14px; padding:8px 16px; border-radius:50px; box-shadow:0 8px 18px rgba(245,179,1,.45); transform:rotate(6deg); white-space:nowrap; }
   @media (max-width:880px){ .hero-fan { transform:scale(.8); transform-origin:top center; height:340px; } }
   @media (max-width:460px){ .hero-fan { transform:scale(.62); height:280px; } }
+
+  /* Capa centralizada premium (portfólio em destaque) */
+  .hero-centered { padding-top:60px; padding-bottom:0; overflow:hidden; }
+  .hero-centered .wrap { text-align:center; }
+  .hero-centered .hero-brand { display:inline-flex; align-items:center; gap:14px; justify-content:center; margin-bottom:22px; }
+  .hero-centered .claude-badge { margin-top:0; }
+  .hero-centered .hero-meta { display:flex; flex-direction:row; justify-content:center; flex-wrap:wrap; gap:10px 24px; margin:0 0 22px; }
+  .hero-centered h1 { max-width:780px; margin:0 auto 18px; }
+  .hero-centered p.lead { max-width:580px; margin:0 auto 26px; }
+  .hero-centered .btn-cta { margin:0 auto; }
+  .hero-centered .hero-progress { max-width:280px; margin:22px auto 0; }
+  .hero-browser { max-width:940px; margin:54px auto 0; background:#fff; border-radius:18px 18px 0 0; overflow:hidden; box-shadow:0 50px 90px -30px rgba(20,50,40,.42); }
+  .hero-browser .hbar { height:48px; background:#efece7; display:flex; align-items:center; gap:9px; padding:0 18px; }
+  .hero-browser .hd { width:13px; height:13px; border-radius:50%; flex-shrink:0; }
+  .hero-browser .hd.r{ background:#ff5f57; } .hero-browser .hd.y{ background:#febc2e; } .hero-browser .hd.g{ background:#28c840; }
+  .hero-browser .hurl { flex:1; max-width:380px; margin:0 auto; background:#fff; border-radius:50px; height:30px; display:flex; align-items:center; justify-content:center; padding:0 18px; font-size:13.5px; color:#6b7280; font-weight:600; }
+  .hero-browser img { width:100%; display:block; }
+  @media (max-width:880px){ .hero-centered h1 { font-size:31px; } .hero-browser { margin-top:36px; } }
+  @media (max-width:560px){
+    .hero-centered .hero-brand { flex-direction:column; gap:12px; margin-bottom:18px; }
+    .hero-centered .hero-meta { flex-direction:column; align-items:center; font-size:13px; gap:8px; }
+    .hero-centered .logo-stamp.big { font-size:25px; }
+  }
   @media (max-width:600px){ .sticky-cta .sc-text { display:none; } .sticky-cta { padding:10px 14px; } .sticky-cta .btn-cta { width:100%; justify-content:center; text-align:center; } }
   .teach-card h3 { font-size:20px; font-weight:800; }
   .teach-role { display:inline-block; font-size:13px; font-weight:600; color:var(--verde-cta); margin:2px 0 10px; }
@@ -431,42 +454,29 @@
 <script>document.documentElement.classList.add('js')</script>
 
 <!-- ═══ SEÇÃO 1 · HERO ═══ -->
-<section class="hero">
+<section class="hero hero-centered">
   <div class="wrap">
-    <div class="grid">
-      <div>
-        <div class="logo-stamp big"><small>Imersão</small>Portfolio<br>Claude</div>
-        <div class="claude-badge"><svg class="spark" viewBox="0 0 100 100" fill="none"><line x1="50.0" y1="43.0" x2="50.0" y2="7.0"/><line x1="53.5" y1="43.9" x2="66.5" y2="21.4"/><line x1="56.1" y1="46.5" x2="84.6" y2="30.0"/><line x1="57.0" y1="50.0" x2="80.0" y2="50.0"/><line x1="56.1" y1="53.5" x2="88.1" y2="72.0"/><line x1="53.5" y1="56.1" x2="66.0" y2="77.7"/><line x1="50.0" y1="57.0" x2="50.0" y2="92.0"/><line x1="46.5" y1="56.1" x2="34.5" y2="76.8"/><line x1="43.9" y1="53.5" x2="14.5" y2="70.5"/><line x1="43.0" y1="50.0" x2="16.0" y2="50.0"/><line x1="43.9" y1="46.5" x2="16.2" y2="30.5"/><line x1="46.5" y1="43.9" x2="35.0" y2="24.0"/></svg><b>Claude</b></div>
-        <div class="hero-meta" style="margin-top:26px">
-          <span class="eyebrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            100% online no Zoom
-          </span>
-          <span class="eyebrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
-            11 e 12 de Julho · 10:00 às 17:00
-          </span>
-        </div>
-        <h1><span class="it">Em 2 dias</span>, construa o <span class="it">portfólio</span> que fecha com marcas.</h1>
-        <p class="lead">Você vai aprender a criar um <b>site que atrai marcas</b> usando o Claude Code. Sem precisar saber design, sem enrolar com Canva, sem complicação na hospedagem. Você sai com <b>tudo pronto e customizado</b> no seu estilo.</p>
-        <a href="#pricing" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
-        <div class="progress" data-fill="78"><i></i></div>
-        <div class="progress-label">78% dos ingressos vendidos</div>
-      </div>
-
-      <div class="phone-wrap">
-        <div class="phone-bg-blur"></div>
-        <span class="float f1">😍</span>
-        <span class="float f2">💚</span>
-        <span class="float f3">✨</span>
-        <div class="hero-fan">
-          <span class="fan-badge">+15 estilos 🎨</span>
-          <img src="modelos/retro-y2k.jpg" alt="Modelo de portfólio">
-          <img src="modelos/verde-limao.jpg" alt="Modelo de portfólio">
-          <img src="modelos/romantico-rosa.jpg" alt="Modelo de portfólio">
-          <img src="modelos/streaming.jpg" alt="Modelo de portfólio">
-        </div>
-      </div>
+    <div class="hero-brand">
+      <div class="logo-stamp big"><small>Imersão</small>Portfolio<br>Claude</div>
+      <div class="claude-badge"><svg class="spark" viewBox="0 0 100 100" fill="none"><line x1="50.0" y1="43.0" x2="50.0" y2="7.0"/><line x1="53.5" y1="43.9" x2="66.5" y2="21.4"/><line x1="56.1" y1="46.5" x2="84.6" y2="30.0"/><line x1="57.0" y1="50.0" x2="80.0" y2="50.0"/><line x1="56.1" y1="53.5" x2="88.1" y2="72.0"/><line x1="53.5" y1="56.1" x2="66.0" y2="77.7"/><line x1="50.0" y1="57.0" x2="50.0" y2="92.0"/><line x1="46.5" y1="56.1" x2="34.5" y2="76.8"/><line x1="43.9" y1="53.5" x2="14.5" y2="70.5"/><line x1="43.0" y1="50.0" x2="16.0" y2="50.0"/><line x1="43.9" y1="46.5" x2="16.2" y2="30.5"/><line x1="46.5" y1="43.9" x2="35.0" y2="24.0"/></svg><b>Claude</b></div>
+    </div>
+    <div class="hero-meta">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        100% online no Zoom
+      </span>
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+        11 e 12 de Julho · 10:00 às 17:00
+      </span>
+    </div>
+    <h1><span class="it">Em 2 dias</span>, construa o <span class="it">portfólio</span> que fecha com marcas.</h1>
+    <p class="lead">Você vai aprender a criar um <b>site que atrai marcas</b> usando o Claude Code. Sem precisar saber design, sem enrolar com Canva, sem complicação na hospedagem. Você sai com <b>tudo pronto e customizado</b> no seu estilo.</p>
+    <a href="#pricing" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
+    <div class="hero-progress"><div class="progress" data-fill="78"><i></i></div><div class="progress-label">78% dos ingressos vendidos</div></div>
+    <div class="hero-browser">
+      <div class="hbar"><span class="hd r"></span><span class="hd y"></span><span class="hd g"></span><span class="hurl">🔒 laradam.com</span></div>
+      <img src="modelos/verde-limao.jpg" alt="Exemplo de portfólio feito na imersão">
     </div>
   </div>
 </section>
