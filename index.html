@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Imersão Portfolio Claude</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bege: #F5F0E8;
+    --verde-escuro: #1A4A3A;
+    --verde-escuro-2: #143a2d;
+    --verde-cta: #16A34A;
+    --verde-cta-hover: #128a3e;
+    --verde-bright: #22C55E;
+    --branco: #FFFFFF;
+    --rosa: #FADADD;
+    --mint: #D4EDDA;
+    --texto: #111827;
+    --texto-mute: #5b6660;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "Inter", -apple-system, Helvetica, Arial, sans-serif;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-lg: 0 18px 50px rgba(0,0,0,0.18);
+    --radius: 22px;
+    --maxw: 1180px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bege);
+    color: var(--texto);
+    overflow-x: hidden;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+  section { padding: 88px 0; }
+
+  em, .it {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--verde-bright);
+    font-weight: 600;
+  }
+
+  /* ─── LOGO STAMP ─────────────────────────── */
+  .logo-stamp {
+    display: inline-block;
+    background: var(--verde-escuro);
+    color: var(--branco);
+    font-family: var(--serif);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.05;
+    padding: 16px 22px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 2px var(--verde-escuro), inset 0 0 0 5px var(--bege), inset 0 0 0 7px var(--verde-escuro);
+    text-align: center;
+  }
+  .logo-stamp small { display: block; font-size: 0.62em; letter-spacing: 4px; font-weight: 700; opacity: .85; }
+  .logo-stamp.big { font-size: 30px; }
+  .logo-stamp.sm { font-size: 18px; padding: 12px 16px; }
+
+  /* ─── BOTÃO CTA ──────────────────────────── */
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--verde-cta);
+    color: #fff;
+    font-weight: 700;
+    font-size: 17px;
+    border: none;
+    border-radius: 50px;
+    padding: 17px 34px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+    box-shadow: 0 8px 22px rgba(22,163,74,.32);
+  }
+  .btn-cta:hover { background: var(--verde-cta-hover); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(22,163,74,.4); }
+  .btn-cta .arrow { transition: transform .2s ease; }
+  .btn-cta:hover .arrow { transform: translateX(4px); }
+
+  /* ─── PROGRESSO ──────────────────────────── */
+  .progress { width: 280px; max-width: 100%; height: 9px; background: #e3ddd2; border-radius: 6px; overflow: hidden; margin-top: 18px; }
+  .progress > i { display: block; height: 100%; width: 0; border-radius: 6px; background: linear-gradient(90deg, #EF4444, #F97316); transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+  .progress-label { font-size: 13.5px; color: var(--texto-mute); font-weight: 600; margin-top: 9px; }
+
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--verde-escuro); }
+  .eyebrow svg { width: 17px; height: 17px; }
+
+  h1, h2 { font-family: var(--sans); font-weight: 800; letter-spacing: -.02em; line-height: 1.08; }
+  .section-title { font-size: clamp(28px, 4vw, 46px); text-align: center; max-width: 820px; margin: 0 auto; }
+
+  /* ─── PHONE MOCKUP ───────────────────────── */
+  .phone-wrap { position: relative; display: flex; justify-content: center; }
+  .phone-bg-blur {
+    position: absolute; inset: 0; margin: auto; width: 78%; height: 88%;
+    background: radial-gradient(circle at 50% 40%, rgba(34,197,94,.18), transparent 70%);
+    filter: blur(6px); z-index: 0;
+  }
+  .phone {
+    position: relative; z-index: 2;
+    width: 280px; aspect-ratio: 9/19;
+    background: linear-gradient(160deg, var(--verde-escuro), #0f2e23);
+    border-radius: 42px;
+    padding: 14px;
+    box-shadow: var(--shadow-lg), inset 0 0 0 2px rgba(255,255,255,.06);
+  }
+  .phone::before { content:""; position:absolute; top:16px; left:50%; transform:translateX(-50%); width:110px; height:24px; background:#0c241b; border-radius:0 0 16px 16px; z-index:5; }
+  .phone-screen {
+    position: relative; width:100%; height:100%; border-radius:30px; overflow:hidden;
+    background: linear-gradient(180deg, #2a7a5c 0%, #1A4A3A 60%, #143a2d 100%);
+    display:flex; flex-direction:column; color:#fff;
+  }
+  .ig-top { display:flex; align-items:center; gap:8px; padding:30px 14px 10px; font-size:13px; font-weight:600; }
+  .ig-top .dot { width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.2); display:grid; place-items:center; font-size:13px; }
+  .ig-photo { flex:1; display:grid; place-items:center; background:radial-gradient(circle at 50% 35%, rgba(255,255,255,.12), transparent 60%); }
+  .ig-photo .ava { width:96px; height:96px; border-radius:50%; background:linear-gradient(160deg,#3CB371,#1A4A3A); display:grid; place-items:center; box-shadow:0 0 0 4px rgba(255,255,255,.15); }
+  .ig-photo .ava svg { width:46px; height:46px; fill:rgba(255,255,255,.85); }
+  .ig-actions { display:flex; align-items:center; gap:18px; padding:12px 16px; font-size:18px; }
+  .ig-actions .time { margin-left:auto; font-size:11px; opacity:.7; font-weight:500; }
+  .ig-msg { margin:0 14px 16px; background:rgba(255,255,255,.16); border-radius:24px; padding:12px 18px; font-size:13px; font-weight:600; text-align:center; backdrop-filter:blur(4px); }
+  .float { position:absolute; z-index:4; font-size:30px; filter:drop-shadow(0 4px 8px rgba(0,0,0,.18)); animation: bob 3.5s ease-in-out infinite; }
+  .float.f1 { top:6%; left:2%; }
+  .float.f2 { top:32%; right:-2%; animation-delay:.6s; }
+  .float.f3 { bottom:14%; left:-4%; animation-delay:1.2s; }
+  .float.f4 { bottom:30%; right:0%; animation-delay:1.8s; }
+  @keyframes bob { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-12px) } }
+  .pink-line { position:absolute; z-index:1; top:40%; right:-30px; width:160px; height:3px; background:linear-gradient(90deg,#EC4899,transparent); transform:rotate(-18deg); }
+
+  /* ─── HERO ───────────────────────────────── */
+  .hero .grid { display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center; }
+  .hero-meta { display:flex; flex-direction:column; gap:10px; margin:22px 0; }
+  .hero h1 { font-size: clamp(28px, 3.5vw, 42px); margin-bottom:18px; }
+  .hero p.lead { font-size:17px; color:#2a3530; max-width:520px; margin-bottom:26px; }
+  .hero p.lead b { font-weight:700; color:var(--texto); }
+
+  /* ─── TICKER BAR (anúncio) ───────────────── */
+  .announce { background:var(--verde-escuro); color:#fff; text-align:center; padding:15px; font-weight:700; font-size:15px; letter-spacing:.3px; }
+
+  /* ─── PAIN POINTS ────────────────────────── */
+  .pain-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; max-width:920px; margin:46px auto 0; }
+  .pain-card {
+    background:var(--verde-escuro); color:#fff; border-radius:18px; padding:24px 26px;
+    display:flex; gap:14px; align-items:flex-start; font-size:16px; font-weight:500; line-height:1.45;
+  }
+  .pain-card.center { grid-column:1 / -1; max-width:460px; margin:0 auto; }
+  .pain-card .warn { flex-shrink:0; width:26px; height:26px; }
+  .pain-foot { text-align:center; margin-top:40px; font-size:clamp(20px,2.6vw,28px); font-weight:700; }
+  .pain-foot .it { display:block; margin-top:4px; font-size:1.15em; }
+
+  /* ─── SOCIAL PROOF ───────────────────────── */
+  .proof { background:var(--verde-escuro); color:#fff; }
+  .proof h2 { color:#fff; }
+  .proof-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:46px; }
+  .proof-card { background:#fff; color:var(--texto); border-radius:16px; padding:20px; box-shadow:var(--shadow); }
+  .proof-head { display:flex; align-items:center; gap:11px; margin-bottom:12px; }
+  .proof-ava { width:40px; height:40px; border-radius:50%; background:linear-gradient(160deg,#3CB371,#1A4A3A); flex-shrink:0; display:grid; place-items:center; }
+  .proof-ava svg { width:20px; height:20px; fill:#fff; }
+  .proof-name { font-weight:700; font-size:14px; }
+  .proof-handle { font-size:12px; color:var(--texto-mute); }
+  .proof-card p { font-size:14px; line-height:1.5; color:#374151; }
+  .proof-stars { color:#F5B301; font-size:13px; margin-top:10px; letter-spacing:2px; }
+
+  /* ─── PARA QUEM É / NÃO É ─────────────────── */
+  .fit-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; max-width:900px; margin:42px auto 0; }
+  .fit-card { border-radius:var(--radius); padding:30px 28px; box-shadow:var(--shadow); }
+  .fit-card.no { background:var(--rosa); }
+  .fit-card.yes { background:var(--mint); }
+  .fit-card h3 { font-size:21px; font-weight:800; margin-bottom:18px; }
+  .fit-card ul { list-style:none; display:flex; flex-direction:column; gap:14px; }
+  .fit-card li { display:flex; gap:11px; font-size:15.5px; line-height:1.4; align-items:flex-start; }
+  .fit-card li .mk { flex-shrink:0; font-weight:700; }
+
+  /* ─── QUEM ENSINA ────────────────────────── */
+  .teach-card { background:#fff; border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); display:flex; gap:20px; align-items:flex-start; }
+  .teach-photo { flex-shrink:0; width:84px; height:84px; border-radius:18px; background:linear-gradient(160deg,#3CB371,#1A4A3A); display:grid; place-items:center; }
+  .teach-photo svg { width:42px; height:42px; fill:rgba(255,255,255,.8); }
+  .teach-card h3 { font-size:20px; font-weight:800; }
+  .teach-role { display:inline-block; font-size:13px; font-weight:600; color:var(--verde-cta); margin:2px 0 10px; }
+  .teach-card p { font-size:14.5px; color:var(--texto-mute); line-height:1.5; }
+
+  /* ─── MARQUEE VERDE ──────────────────────── */
+  .marquee { background:var(--verde-bright); overflow:hidden; padding:16px 0; }
+  .marquee .track { display:flex; gap:0; white-space:nowrap; animation: scroll 22s linear infinite; }
+  .marquee .track span { font-family:var(--serif); font-weight:800; font-size:22px; color:#063d22; text-transform:uppercase; padding:0 28px; letter-spacing:1px; }
+  @keyframes scroll { from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+
+  /* ─── MÓDULOS / APRENDER ─────────────────── */
+  .learn .grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .learn h2 { font-size:clamp(26px,3.4vw,40px); margin-bottom:18px; }
+  .learn p.lead { font-size:16px; color:#2a3530; margin-bottom:26px; max-width:440px; }
+  .modules { background:#fff; border-radius:var(--radius); padding:14px 30px; box-shadow:var(--shadow); }
+  .module { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #eee; }
+  .module:last-child { border-bottom:none; }
+  .module .bar { width:4px; border-radius:4px; background:var(--verde-bright); flex-shrink:0; }
+  .module .num { font-weight:800; color:var(--verde-escuro); font-size:15px; }
+  .module h4 { font-size:17px; font-weight:700; margin:2px 0 5px; }
+  .module p { font-size:14px; color:var(--texto-mute); line-height:1.45; }
+
+  /* ─── MODELOS DE PORTFOLIO ───────────────── */
+  .models-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:920px; margin:46px auto 0; }
+  .model-card { background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .25s ease, box-shadow .25s ease; }
+  .model-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); }
+  .model-preview { height:200px; padding:18px; display:flex; flex-direction:column; gap:10px; position:relative; overflow:hidden; }
+  .model-body { padding:22px 24px 26px; }
+  .model-body h3 { font-size:20px; font-weight:800; margin-bottom:6px; }
+  .model-body p { font-size:14.5px; color:var(--texto-mute); line-height:1.5; margin-bottom:16px; }
+  .model-swatches { display:flex; align-items:center; gap:8px; }
+  .model-swatches .sw { width:20px; height:20px; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(0,0,0,.08); }
+  .model-swatches .lbl { font-size:12px; font-weight:600; color:var(--texto-mute); margin-left:4px; }
+  .badge-bonus { display:inline-block; background:#F5B301; color:#5a4200; font-weight:800; font-size:11px; letter-spacing:1px; text-transform:uppercase; padding:6px 14px; border-radius:50px; margin:14px auto 0; }
+  /* mini mockup helpers */
+  .mk-bar { border-radius:5px; }
+  .mk-avatar { width:38px; height:38px; border-radius:50%; flex-shrink:0; }
+  .mk-row { display:flex; gap:8px; }
+  .mk-tiles { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:auto; }
+  .mk-tiles > div { aspect-ratio:1; border-radius:6px; }
+  /* estilo 1 - clean */
+  .p-clean { background:#f3f3f1; }
+  .p-clean .l1 { width:55%; height:14px; background:#1a1a1a; }
+  .p-clean .l2 { width:38%; height:8px; background:#bdbdbd; }
+  .p-clean .mk-tiles > div { background:#ddd; }
+  /* estilo 2 - bold */
+  .p-bold { background:linear-gradient(150deg,#22C55E,#1A4A3A); }
+  .p-bold .mk-avatar { background:rgba(255,255,255,.85); }
+  .p-bold .l1 { width:50%; height:13px; background:#fff; }
+  .p-bold .l2 { width:34%; height:8px; background:rgba(255,255,255,.6); }
+  .p-bold .mk-tiles > div { background:rgba(255,255,255,.9); }
+  .p-bold .mk-tiles > div:nth-child(2){ background:#FACC15; }
+  .p-bold .mk-tiles > div:nth-child(4){ background:#EC4899; }
+  /* estilo 3 - premium */
+  .p-premium { background:#1f1f1f; }
+  .p-premium .l1 { width:58%; height:14px; background:#D4AF37; font-family:var(--serif); }
+  .p-premium .l2 { width:40%; height:8px; background:#777; }
+  .p-premium .mk-tiles > div { background:#333; box-shadow:inset 0 0 0 1px rgba(212,175,55,.5); }
+  /* estilo 4 - energético */
+  .p-energetic { background:#eef7f0; }
+  .p-energetic .mk-avatar { background:#22C55E; }
+  .p-energetic .l1 { width:48%; height:12px; background:#1A4A3A; }
+  .p-energetic .l2 { width:32%; height:7px; background:#9bbfa8; }
+  .p-energetic .mk-tiles { grid-template-columns:repeat(4,1fr); }
+  .p-energetic .mk-tiles > div { background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.06); display:grid; place-items:center; font-size:12px; }
+
+  /* ─── BANNER MOTIVACIONAL ─────────────────── */
+  .banner { background:var(--verde-escuro); color:#fff; }
+  .banner .grid { display:grid; grid-template-columns:1.1fr .9fr; gap:46px; align-items:center; }
+  .banner h2 { color:#fff; font-size:clamp(30px,4vw,52px); }
+  .banner .quote { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(22px,2.6vw,32px); color:#d6f5e3; margin-top:14px; }
+  .banner-photo { aspect-ratio:4/5; border-radius:var(--radius); background:linear-gradient(160deg,#3CB371,#1A4A3A); display:grid; place-items:center; box-shadow:var(--shadow-lg); }
+  .banner-photo svg { width:90px; height:90px; fill:rgba(255,255,255,.7); }
+
+  /* ─── ANTES / DEPOIS ─────────────────────── */
+  .compare { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:880px; margin:44px auto 0; }
+  .compare .col { border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
+  .compare .head { padding:18px; text-align:center; font-weight:800; letter-spacing:.5px; font-size:15px; }
+  .compare .no .head { background:#fff; color:var(--texto); }
+  .compare .yes .head { background:var(--verde-escuro); color:#fff; }
+  .compare .body { padding:8px 24px 22px; }
+  .compare .no .body { background:#fff; }
+  .compare .yes .body { background:#1f5644; color:#fff; }
+  .compare li { list-style:none; display:flex; gap:11px; padding:14px 0; border-bottom:1px solid rgba(0,0,0,.07); font-size:15px; align-items:flex-start; }
+  .compare .yes li { border-bottom-color:rgba(255,255,255,.12); }
+  .compare li:last-child { border-bottom:none; }
+
+  /* ─── COMO FUNCIONA O DIA ─────────────────── */
+  .day .grid { display:grid; grid-template-columns:.9fr 1.1fr; gap:46px; align-items:start; margin-top:42px; }
+  .timeline { position:relative; padding-left:8px; }
+  .tl-item { display:flex; gap:18px; padding-bottom:30px; position:relative; }
+  .tl-item:last-child { padding-bottom:0; }
+  .tl-item .node { width:42px; height:42px; border-radius:50%; background:var(--verde-cta); display:grid; place-items:center; flex-shrink:0; z-index:2; box-shadow:0 6px 14px rgba(22,163,74,.3); }
+  .tl-item .node svg { width:18px; height:18px; stroke:#fff; }
+  .tl-item:not(:last-child)::before { content:""; position:absolute; left:20px; top:42px; bottom:0; width:2px; background:#cfe6d8; }
+  .tl-item .when { font-weight:800; font-size:16px; }
+  .tl-item .what { font-size:14px; color:var(--texto-mute); }
+  .day-cards { display:flex; flex-direction:column; gap:18px; }
+  .day-card { background:#fff; border-radius:var(--radius); padding:24px 26px; box-shadow:var(--shadow); }
+  .day-card h4 { font-size:18px; font-weight:800; margin-bottom:14px; color:var(--verde-escuro); }
+  .day-card li { list-style:none; display:flex; gap:10px; padding:7px 0; font-size:15px; }
+
+  /* ─── PRICING ────────────────────────────── */
+  .price-intro { text-align:center; max-width:680px; margin:18px auto 0; color:#2a3530; font-size:16px; }
+  .price-card { background:#15332a; border-radius:28px; padding:40px; margin-top:46px; display:grid; grid-template-columns:1fr 380px; gap:40px; align-items:center; box-shadow:var(--shadow-lg); }
+  .price-card h3 { color:#fff; font-size:22px; font-weight:800; margin-bottom:20px; }
+  .price-card .incl { list-style:none; display:flex; flex-direction:column; gap:13px; }
+  .price-card .incl li { display:flex; gap:11px; color:#e7f3ec; font-size:15.5px; align-items:flex-start; }
+  .price-inner { background:#fff; border-radius:20px; padding:30px 28px; text-align:center; }
+  .badge { display:inline-block; background:var(--verde-bright); color:#063d22; font-weight:800; font-size:12px; letter-spacing:1px; text-transform:uppercase; padding:7px 16px; border-radius:50px; }
+  .price-old { color:var(--texto-mute); font-size:15px; margin-top:18px; }
+  .price-old s { opacity:.8; }
+  .price-big { font-size:62px; font-weight:800; color:var(--verde-escuro); line-height:1; margin:4px 0 22px; letter-spacing:-2px; }
+  .price-inner .btn-cta { width:100%; justify-content:center; }
+  .price-inner .progress { margin:18px auto 0; }
+  .pay-icons { display:flex; gap:8px; justify-content:center; margin-top:20px; flex-wrap:wrap; }
+  .pay-icons .pay { font-size:11px; font-weight:700; color:#475569; background:#f1f5f3; border:1px solid #e2e8e4; border-radius:6px; padding:5px 9px; }
+  .secure { display:flex; align-items:center; justify-content:center; gap:7px; margin-top:14px; font-size:12.5px; color:var(--texto-mute); }
+  .secure svg { width:14px; height:14px; }
+
+  /* ─── FAQ ────────────────────────────────── */
+  .faq-list { max-width:760px; margin:40px auto 0; display:flex; flex-direction:column; gap:14px; }
+  .faq-item { background:#fff; border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
+  .faq-q { width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:22px 24px; font-size:16.5px; font-weight:700; color:var(--texto); display:flex; justify-content:space-between; align-items:center; gap:16px; font-family:var(--sans); }
+  .faq-q .ic { flex-shrink:0; width:24px; height:24px; transition:transform .3s ease; color:var(--verde-cta); }
+  .faq-item.open .faq-q .ic { transform:rotate(45deg); }
+  .faq-a { max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .faq-a p { padding:0 24px 22px; color:var(--texto-mute); font-size:15px; line-height:1.55; }
+  .faq-help { max-width:560px; margin:34px auto 0; background:#fff; border-radius:var(--radius); padding:30px; text-align:center; box-shadow:var(--shadow); }
+  .faq-help .wa { width:52px; height:52px; border-radius:50%; background:#25D366; display:grid; place-items:center; margin:0 auto 14px; }
+  .faq-help .wa svg { width:28px; height:28px; fill:#fff; }
+  .faq-help h4 { font-size:20px; font-weight:800; margin-bottom:8px; }
+  .faq-help p { color:var(--texto-mute); font-size:15px; margin-bottom:20px; }
+
+  /* ─── CTA FINAL ──────────────────────────── */
+  .final { background:var(--verde-escuro); color:#fff; text-align:center; }
+  .final .eyebrow { color:#bfe9d1; justify-content:center; }
+  .final h2 { color:#fff; font-size:clamp(30px,4.4vw,56px); max-width:880px; margin:18px auto 16px; }
+  .final h2 .it { color:#5df0a0; }
+  .final p { color:#cfe6da; max-width:560px; margin:0 auto 30px; font-size:17px; }
+  .final .progress { margin:22px auto 0; }
+  .final .btn-cta { box-shadow:0 10px 30px rgba(0,0,0,.3); }
+
+  /* ─── RODAPÉ ─────────────────────────────── */
+  footer { background:var(--bege); text-align:center; padding:38px 20px; }
+  footer p { font-size:13px; color:var(--texto-mute); }
+  footer p + p { margin-top:6px; }
+
+  /* ─── RESPONSIVO ─────────────────────────── */
+  @media (max-width: 880px) {
+    section { padding:60px 0; }
+    .hero .grid, .learn .grid, .banner .grid, .day .grid, .price-card { grid-template-columns:1fr; }
+    .hero .phone-wrap { order:-1; }
+    .pain-grid, .proof-grid, .fit-grid, .compare, .models-grid { grid-template-columns:1fr; }
+    .pain-card.center { max-width:100%; }
+    .price-card { padding:26px; }
+    .price-inner { padding:26px 20px; }
+    .banner-photo { max-width:340px; margin:0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ SEÇÃO 1 · HERO ═══ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="logo-stamp big"><small>Imersão</small>Portfolio<br>Claude</div>
+        <div class="hero-meta" style="margin-top:26px">
+          <span class="eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            100% online no Zoom
+          </span>
+          <span class="eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+            11 e 12 de Julho · 10:00 às 17:00
+          </span>
+        </div>
+        <h1><span class="it">Em 2 dias</span>, você vai construir comigo seu <span class="it">portfolio profissional</span> e sair com um site completo, hospedado e pronto para fechar marcas.</h1>
+        <p class="lead">Você vai aprender a criar um <b>website que atrai brands</b> usando Claude Code. Sem precisar saber design, sem enrolar com Canva, sem complicação na hospedagem. Você sai com <b>tudo pronto e customizado</b> no seu estilo.</p>
+        <a href="#pricing" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
+        <div class="progress" data-fill="78"><i></i></div>
+        <div class="progress-label">78% dos ingressos vendidos</div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone-bg-blur"></div>
+        <span class="float f1">😍</span>
+        <span class="float f2">💚</span>
+        <span class="float f3">❤️</span>
+        <span class="float f4">💗</span>
+        <div class="pink-line"></div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ig-top">
+              <span class="dot">←</span> laradadam
+            </div>
+            <div class="ig-photo"><div class="ava"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z"/></svg></div></div>
+            <div class="ig-actions">♥ <span>💬</span> <span>✈</span> <span class="time">agora</span></div>
+            <div class="ig-msg">Seu portfolio está online 🎉</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 2 · BARRA ANUNCIANTE ═══ -->
+<div class="announce">Aproveite o Lote 1 — Vagas Limitadas 🔥</div>
+
+<!-- ═══ SEÇÃO 4 · PAIN POINTS ═══ -->
+<section>
+  <div class="wrap">
+    <h2 class="section-title">Você cria conteúdo de qualidade. Mas o portfolio não reflete isso.</h2>
+    <div class="pain-grid">
+      <div class="pain-card"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Tenta fazer portfolio no Canva e fica com cara de amadora.</div>
+      <div class="pain-card"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Não sabe hospedar a página, fica complicado e caro.</div>
+      <div class="pain-card"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Enrola pra fazer portfolio porque parece coisa de dev.</div>
+      <div class="pain-card"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Tem vários vídeos bons, mas não consegue organizar tudo direitinho.</div>
+      <div class="pain-card center"><svg class="warn" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Vê criadores sem portfolio fechando brand e acha que não vale investir.</div>
+    </div>
+    <p class="pain-foot">O problema não é falta de conteúdo.<span class="it">É falta de um portfólio que trabalhe pra você.</span></p>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 5 · SOCIAL PROOF ═══ -->
+<section class="proof">
+  <div class="wrap">
+    <h2 class="section-title">Criadores que já saíram com o <span style="color:#5df0a0">site pronto</span>:</h2>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-head"><div class="proof-ava"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z"/></svg></div><div><div class="proof-name">Marina F.</div><div class="proof-handle">creator UGC</div></div></div>
+        <p>"Entrei sem saber nada de código. Saí com um site lindo que eu mesma customizei. Uma semana depois recebi proposta de marca que me achou pelo portfolio. Não acredito que fiz isso em 2 dias."</p>
+        <div class="proof-stars">★★★★★</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-head"><div class="proof-ava"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z"/></svg></div><div><div class="proof-name">Juliana M.</div><div class="proof-handle">creator de conteúdo</div></div></div>
+        <p>"O Canva que eu usava antes ficou ridículo ao lado desse site. Hospedei tudo em 20 minutos e já passei pro meu e-mail pra brands. Melhor investimento que fiz."</p>
+        <div class="proof-stars">★★★★★</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-head"><div class="proof-ava"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z"/></svg></div><div><div class="proof-name">Camila T.</div><div class="proof-handle">influenciadora</div></div></div>
+        <p>"Pensei que precisava de dev pra fazer. Mas com o Claude foi tão simples que fiz sozinha. Meu portfolio faz o trabalho pesado agora."</p>
+        <div class="proof-stars">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 4B · QUEM ENSINA ═══ -->
+<section>
+  <div class="wrap">
+    <h2 class="section-title">Você aprende com quem <span class="it">vive isso</span> no dia a dia.</h2>
+    <div class="fit-grid">
+      <div class="teach-card">
+        <div class="teach-photo"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z"/></svg></div>
+        <div>
+          <h3>Lara Dam</h3>
+          <span class="teach-role">Gestão de campanhas UGC</span>
+          <p>Gerencia campanhas UGC e avalia portfolios de criadores pra brands. Sabe exatamente o que marcas procuram quando abrem um portfolio. Testou esse método em 6 meses e fechou contratos toda semana.</p>
+        </div>
+      </div>
+      <div class="teach-card">
+        <div class="teach-photo"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z"/></svg></div>
+        <div>
+          <h3>Julia Eduarda</h3>
+          <span class="teach-role">Revisão de portfolio</span>
+          <p>Especialista em revisão de portfolio. Tem olho treinado pra identificar o que funciona e o que não funciona num site de criador. Vai revisar seu portfolio na imersão e dar feedback profissional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 6 · PARA QUEM É / NÃO É ═══ -->
+<section>
+  <div class="wrap">
+    <h2 class="section-title">Essa Imersão é para quem quer <span class="it">sair com resultado.</span></h2>
+    <p style="text-align:center; color:var(--texto-mute); margin-top:12px; font-weight:600">Veja se é para você:</p>
+    <div class="fit-grid">
+      <div class="fit-card no">
+        <h3>Para quem <u>não</u> é</h3>
+        <ul>
+          <li><span class="mk">❌</span> Quer aprender design desde zero ou dominar programação.</li>
+          <li><span class="mk">❌</span> Não está disposta a colocar a mão na massa durante 2 dias.</li>
+          <li><span class="mk">❌</span> Prefere ficar com portfolio no Canva ou não ter portfolio.</li>
+        </ul>
+      </div>
+      <div class="fit-card yes">
+        <h3>Para quem <u>é</u></h3>
+        <ul>
+          <li><span class="mk">✅</span> Cria conteúdo e quer virar isso em clientes de verdade.</li>
+          <li><span class="mk">✅</span> Está cansada de complicação e quer algo que funciona rápido.</li>
+          <li><span class="mk">✅</span> Quer um portfolio profissional que ela mesma consegue customizar.</li>
+          <li><span class="mk">✅</span> Tem vídeos, fotos de trabalhos e depoimentos. Só precisa juntar tudo num lugar.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 7 · MARQUEE ═══ -->
+<div class="marquee">
+  <div class="track">
+    <span>Imersão Portfolio Claude • 11 e 12 de Julho · 10:00 às 17:00 •</span>
+    <span>Imersão Portfolio Claude • 11 e 12 de Julho · 10:00 às 17:00 •</span>
+    <span>Imersão Portfolio Claude • 11 e 12 de Julho · 10:00 às 17:00 •</span>
+    <span>Imersão Portfolio Claude • 11 e 12 de Julho · 10:00 às 17:00 •</span>
+  </div>
+</div>
+
+<!-- ═══ SEÇÃO 8 · O QUE VOCÊ VAI APRENDER ═══ -->
+<section class="learn">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h2>Você vai sair com <span class="it">site pronto para fechar marca.</span></h2>
+        <p class="lead">Em 14 horas de imersão, você vai estruturar, criar e colocar online seu primeiro portfolio profissional. Tudo que você precisar customizar depois, você consegue fazer sozinha.</p>
+        <a href="#pricing" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
+        <div class="progress" data-fill="78"><i></i></div>
+        <div class="progress-label">78% dos ingressos vendidos</div>
+      </div>
+      <div class="modules">
+        <div class="module"><div class="bar"></div><div><div class="num">01</div><h4>Entendendo seu portfolio</h4><p>O que funciona, como marcas encontram criadores e o que diferencia um site que fecha.</p></div></div>
+        <div class="module"><div class="bar"></div><div><div class="num">02</div><h4>Estruturando seus dados</h4><p>Organizando seus melhores vídeos, depoimentos de marcas e estatísticas de forma profissional.</p></div></div>
+        <div class="module"><div class="bar"></div><div><div class="num">03</div><h4>Criando o site com Claude</h4><p>Copiando prompts prontos, deixando com seu estilo e entendendo como funciona.</p></div></div>
+        <div class="module"><div class="bar"></div><div><div class="num">04</div><h4>Hospedando e customizando</h4><p>Subindo tudo na Hostinger, testando, ajustando. Sair com site 100% online.</p></div></div>
+        <div class="module"><div class="bar" style="background:#F5B301"></div><div><div class="num" style="color:#b8860b">BÔNUS</div><h4>Feedback profissional</h4><p>Julia Eduarda revisa seu portfolio e dá feedback especializado do que funciona pro lado das marcas.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 8B · MODELOS DE PORTFOLIO ═══ -->
+<section>
+  <div class="wrap">
+    <h2 class="section-title">Escolha seu <span class="it">estilo de portfolio</span></h2>
+    <p style="text-align:center; color:var(--texto-mute); margin-top:12px; font-weight:600">Você recebe 4 modelos diferentes prontos pra customizar</p>
+    <div style="text-align:center"><span class="badge-bonus">4 modelos de bônus</span></div>
+    <div class="models-grid">
+
+      <div class="model-card">
+        <div class="model-preview p-clean">
+          <div class="mk-row"><div class="mk-bar l1"></div></div>
+          <div class="mk-bar l2"></div>
+          <div class="mk-tiles"><div></div><div></div><div></div></div>
+        </div>
+        <div class="model-body">
+          <h3>Minimalista Clean</h3>
+          <p>Simples, direto e profissional. Para quem quer foco total no trabalho.</p>
+          <div class="model-swatches">
+            <span class="sw" style="background:#1a1a1a"></span>
+            <span class="sw" style="background:#bdbdbd"></span>
+            <span class="sw" style="background:#f3f3f1"></span>
+            <span class="lbl">Tons neutros</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <div class="model-preview p-bold">
+          <div class="mk-row"><div class="mk-avatar"></div><div style="display:flex;flex-direction:column;gap:6px;justify-content:center"><div class="mk-bar l1"></div><div class="mk-bar l2"></div></div></div>
+          <div class="mk-tiles"><div></div><div></div><div></div></div>
+        </div>
+        <div class="model-body">
+          <h3>Creator Bold</h3>
+          <p>Colorido e moderno. Personalidade em primeiro plano.</p>
+          <div class="model-swatches">
+            <span class="sw" style="background:#22C55E"></span>
+            <span class="sw" style="background:#FACC15"></span>
+            <span class="sw" style="background:#EC4899"></span>
+            <span class="lbl">Verde vibrante</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <div class="model-preview p-premium">
+          <div class="mk-row"><div class="mk-bar l1"></div></div>
+          <div class="mk-bar l2"></div>
+          <div class="mk-tiles"><div></div><div></div><div></div></div>
+        </div>
+        <div class="model-body">
+          <h3>Elegância Premium</h3>
+          <p>Sofisticado e requintado. Para o alto padrão.</p>
+          <div class="model-swatches">
+            <span class="sw" style="background:#D4AF37"></span>
+            <span class="sw" style="background:#1f1f1f"></span>
+            <span class="sw" style="background:#ffffff"></span>
+            <span class="lbl">Ouro &amp; grafite</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <div class="model-preview p-energetic">
+          <div class="mk-row"><div class="mk-avatar"></div><div style="display:flex;flex-direction:column;gap:6px;justify-content:center"><div class="mk-bar l1"></div><div class="mk-bar l2"></div></div></div>
+          <div class="mk-tiles"><div>▲</div><div>●</div><div>■</div><div>★</div></div>
+        </div>
+        <div class="model-body">
+          <h3>Energético Moderno</h3>
+          <p>Vivo e atualizado. Mostra movimento e energia.</p>
+          <div class="model-swatches">
+            <span class="sw" style="background:#22C55E"></span>
+            <span class="sw" style="background:#eef7f0"></span>
+            <span class="sw" style="background:#9bbfa8"></span>
+            <span class="lbl">Verde claro</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 9 · BANNER MOTIVACIONAL ═══ -->
+<section class="banner">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h2>Portfolio profissional não é luxo.</h2>
+        <p class="quote">É a porta de entrada pra fechar marca.</p>
+      </div>
+      <div class="banner-photo"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-5 0-9 2.5-9 6v2h18v-2c0-3.5-4-6-9-6z"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 10 · ANTES E DEPOIS ═══ -->
+<section>
+  <div class="wrap">
+    <h2 class="section-title">O que muda depois de <span class="it">2 dias de Imersão?</span></h2>
+    <div class="compare">
+      <div class="col no">
+        <div class="head">SEM O PORTFOLIO</div>
+        <ul class="body">
+          <li>❌ Manda currículo ou reel solto pra marca</li>
+          <li>❌ Sem lugar centralizado pra mostrar trabalhos</li>
+          <li>❌ Perde oportunidade por não ter credibilidade visual</li>
+          <li>❌ Gasta tempo respondendo "qual é seu portfolio?"</li>
+        </ul>
+      </div>
+      <div class="col yes">
+        <div class="head">COM O PORTFOLIO</div>
+        <ul class="body">
+          <li>✅ Você mesma é encontrada pelas marcas</li>
+          <li>✅ Portfolio profissional falando por você</li>
+          <li>✅ Credibilidade que aumenta seu valor de cachê</li>
+          <li>✅ Está tudo num lugar e funciona 24/7</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 11 · COMO FUNCIONA O DIA ═══ -->
+<section class="day">
+  <div class="wrap">
+    <h2 class="section-title">Como vai <span class="it">funcionar</span> o fim de semana</h2>
+    <p style="text-align:center; color:var(--texto-mute); margin-top:12px; font-weight:600">100% online no Zoom | 11 e 12 de Julho · 10:00 às 17:00</p>
+    <div class="grid">
+      <div class="timeline">
+        <div class="tl-item"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div><div class="when">10h00 — Início</div></div></div>
+        <div class="tl-item"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div><div class="when">12h30 — Pausa para almoço</div></div></div>
+        <div class="tl-item"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div><div class="when">14h00 — Retorno</div></div></div>
+        <div class="tl-item"><div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div><div class="when">17h00 — Encerramento</div></div></div>
+      </div>
+      <div class="day-cards">
+        <div class="day-card">
+          <h4>📅 Dia 1 (Sábado)</h4>
+          <li>✓ Entendimento do Portfolio</li>
+          <li>✓ Estrutura Profissional</li>
+          <li>✓ Começar a Criar</li>
+        </div>
+        <div class="day-card">
+          <h4>📅 Dia 2 (Domingo)</h4>
+          <li>✓ Finalizar o Site</li>
+          <li>✓ Hospedagem e Testes</li>
+          <li>✓ Customizações Finais</li>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 11 · PROVA SOCIAL (autora) ═══ -->
+<section class="proof">
+  <div class="wrap" style="max-width:760px">
+    <h2 class="section-title" style="color:#fff">Quem ensina isso avalia portfolio pra brand <span style="color:#5df0a0">todo dia.</span></h2>
+    <p style="text-align:center; color:#cfe6da; font-size:17px; line-height:1.6; margin-top:24px">
+      Sou Lara Damasceno. Trabalho com gestão de campanhas UGC e sou quem aprova criadores e portfolios pras marcas. Criei um portfolio com Claude Code há 6 meses, testei tudo que vou ensinar e aumentei meu alcance significativamente, fechando com marcas todas as semanas. Nessa imersão vou passar exatamente o que eu procuro quando estou avaliando um portfolio que vai fechar marca.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 12 · PRICING ═══ -->
+<section id="pricing">
+  <div class="wrap">
+    <h2 class="section-title">Garanta sua vaga na <span class="it">Imersão Portfolio Claude</span></h2>
+    <p style="text-align:center; color:var(--texto-mute); margin-top:10px; font-weight:600">100% online no Zoom | 11 e 12 de Julho · 10:00 às 17:00</p>
+    <p class="price-intro">Esse portfolio vai trabalhar pra você enquanto você dorme. Vai fechar marca, vai aumentar seu cachê, vai ser a porta de entrada profissional que todo criador precisa ter.</p>
+    <div class="price-card">
+      <div>
+        <h3>O que está incluso</h3>
+        <ul class="incl">
+          <li>✅ 14 horas de Imersão ao vivo pelo Zoom (com Lara + Julia)</li>
+          <li>✅ Site completo pronto (você não faz do zero)</li>
+          <li>✅ Todos os prompts do Claude já testados</li>
+          <li>✅ Hospedagem e domínio explicado passo a passo</li>
+          <li>✅ Dashboard com estatísticas do seu portfolio</li>
+          <li>✅ Customização conforme seu estilo</li>
+          <li>✅ Feedback profissional de Julia Eduarda sobre seu portfolio</li>
+        </ul>
+      </div>
+      <div class="price-inner">
+        <span class="badge">Lote Especial</span>
+        <p class="price-old">Apenas</p>
+        <div class="price-big">R$197</div>
+        <a href="#" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
+        <div class="progress" data-fill="78"><i></i></div>
+        <div class="progress-label">78% dos ingressos vendidos</div>
+        <div class="pay-icons">
+          <span class="pay">VISA</span><span class="pay">MASTERCARD</span><span class="pay">ELO</span><span class="pay">PIX</span><span class="pay">BOLETO</span>
+        </div>
+        <div class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Compra 100% segura</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 13 · FAQ ═══ -->
+<section>
+  <div class="wrap">
+    <h2 class="section-title">Perguntas Frequentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Preciso saber código? <span class="ic">＋</span></button>
+        <div class="faq-a"><p>Não. Você vai trabalhar com prompts do Claude. Tudo pronto pra você copiar, colar e customizar.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Se eu não puder ir ao vivo? <span class="ic">＋</span></button>
+        <div class="faq-a"><p>Recebe a gravação, mas a experiência ao vivo é bem melhor porque você consegue tirar dúvidas na hora e recebe feedback da Julia em tempo real.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Qual domínio vou usar? <span class="ic">＋</span></button>
+        <div class="faq-a"><p>Você compra seu próprio domínio (opcional) ou pode usar um subdomínio que a gente configura.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Meu portfolio vai ser igual ao de outras criadoras? <span class="ic">＋</span></button>
+        <div class="faq-a"><p>Não. Cada uma customiza o design e coloca seus próprios dados. Fica único.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quanto custa hospedar depois? <span class="ic">＋</span></button>
+        <div class="faq-a"><p>A Hostinger tem planos desde R$15/mês. Você escolhe conforme seu orçamento.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Serve para qualquer tipo de creator? <span class="ic">＋</span></button>
+        <div class="faq-a"><p>Sim. Criadores de conteúdo, influenciadores, UGCs, fotógrafos. Se você cria e quer fechar marca, serve.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Julia vai revisar meu portfolio? <span class="ic">＋</span></button>
+        <div class="faq-a"><p>Sim. Como bônus da imersão, Julia Eduarda revisa seu portfolio e dá feedback especializado sobre o que funciona pro lado das marcas.</p></div>
+      </div>
+    </div>
+    <div class="faq-help">
+      <div class="wa"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1112 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2a.4.4 0 000-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 00-.7.3 2.8 2.8 0 00-.9 2.1 4.9 4.9 0 001 2.6 11.2 11.2 0 004.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 001.6-1.2 2 2 0 00.2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg></div>
+      <h4>Ainda tem dúvidas?</h4>
+      <p>Fala com a nossa equipe pelo WhatsApp. A gente te ajuda a decidir.</p>
+      <a href="#" class="btn-cta">Falar com o suporte 💬</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEÇÃO 14 · CTA FINAL ═══ -->
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow">🖥️ 100% online no Zoom | 11 e 12 de Julho · 10:00 às 17:00</span>
+    <h2>Você passou 6 meses criando conteúdo de qualidade. Agora é hora de um portfolio que <span class="it">trabalha pra você.</span></h2>
+    <p>Garanta sua vaga agora e saia da imersão com o site no ar, pronto pra fechar marca.</p>
+    <a href="#pricing" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
+    <div class="progress" data-fill="78" style="display:inline-block"><i></i></div>
+    <div class="progress-label" style="color:#cfe6da">78% dos ingressos vendidos</div>
+  </div>
+</section>
+
+<!-- ═══ RODAPÉ ═══ -->
+<footer>
+  <p>© Copyright 2024 Lara Damasceno. Todos os direitos reservados.</p>
+  <p>Desenvolvido por Lara Dam</p>
+</footer>
+
+<script>
+  // Accordion FAQ
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var ans = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('open');
+      // fecha todos
+      document.querySelectorAll('.faq-item').forEach(function(it){
+        it.classList.remove('open');
+        it.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Barras de progresso animam ao entrar na tela
+  var bars = document.querySelectorAll('.progress');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var fill = e.target.getAttribute('data-fill') || 80;
+        e.target.querySelector('i').style.width = fill + '%';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: .4 });
+  bars.forEach(function(b){ io.observe(b); });
+</script>
+</body>
+</html>
