@@ -315,15 +315,20 @@
   .hs-topbar i { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
   .hs-topbar .u { flex:1; max-width:230px; margin:0 auto; height:21px; background:#fff; border-radius:50px;
     display:flex; align-items:center; justify-content:center; font-size:11px; color:#6b7280; font-weight:600; }
-  .hs-frames { position:relative; height:212px; }
-  .hs-frames img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top center;
-    opacity:0; transition:opacity .8s ease; display:block; }
-  .hs-frames img.on { opacity:1; }
-  .hs-dots { display:flex; gap:7px; justify-content:center; margin:16px 0 4px; }
-  .hs-dots i { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.28);
-    transition:all .4s ease; cursor:pointer; }
-  .hs-dots i.on { background:#F5B301; width:22px; border-radius:50px; }
-  .hs-clabel { text-align:center; font-size:12px; font-weight:700; letter-spacing:.6px; color:#9fc2b1; margin-bottom:16px; }
+  .hs-screen { position:relative; height:330px; background:#0e0e10; }
+  .hs-screen.loading::after { content:"carregando o site…"; position:absolute; inset:0; z-index:0;
+    display:grid; place-items:center; color:#9fc2b1; font-size:13px; font-weight:600; }
+  .hs-site { position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
+    z-index:1; opacity:0; transition:opacity .4s ease; pointer-events:none; background:#fff; }
+  .hs-site.on { pointer-events:auto; }
+  .hs-site.on.ready { opacity:1; }
+  .hs-tabs { display:flex; gap:8px; justify-content:center; margin:15px 0 11px; }
+  .hs-tab { font-family:var(--sans); font-size:13px; font-weight:700; cursor:pointer;
+    border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:#dceae2;
+    border-radius:50px; padding:8px 16px; transition:all .25s ease; }
+  .hs-tab:hover { background:rgba(255,255,255,.12); }
+  .hs-tab.on { background:#fff; color:var(--verde-escuro); border-color:#fff; }
+  .hs-clabel { text-align:center; font-size:12px; font-weight:600; letter-spacing:.3px; color:#9fc2b1; margin-bottom:15px; }
   .hs-grid { display:grid; grid-template-columns:1fr 1fr; gap:11px; }
   .hs-item { display:flex; align-items:center; gap:10px; border-radius:13px; padding:13px 14px;
     font-size:14px; font-weight:600; color:#eaf3ee; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); }
@@ -547,17 +552,17 @@
     <div class="hs-card">
       <div class="hs-claude-float"><svg class="spark" viewBox="0 0 100 100" fill="none"><line x1="50.0" y1="43.0" x2="50.0" y2="7.0"/><line x1="53.5" y1="43.9" x2="66.5" y2="21.4"/><line x1="56.1" y1="46.5" x2="84.6" y2="30.0"/><line x1="57.0" y1="50.0" x2="80.0" y2="50.0"/><line x1="56.1" y1="53.5" x2="88.1" y2="72.0"/><line x1="53.5" y1="56.1" x2="66.0" y2="77.7"/><line x1="50.0" y1="57.0" x2="50.0" y2="92.0"/><line x1="46.5" y1="56.1" x2="34.5" y2="76.8"/><line x1="43.9" y1="53.5" x2="14.5" y2="70.5"/><line x1="43.0" y1="50.0" x2="16.0" y2="50.0"/><line x1="43.9" y1="46.5" x2="16.2" y2="30.5"/><line x1="46.5" y1="43.9" x2="35.0" y2="24.0"/></svg><b>Claude</b></div>
       <div class="hs-shot">
-        <div class="hs-topbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="u">🔒 laradam.com</span></div>
-        <div class="hs-frames">
-          <img class="on" src="modelos/verde-limao.jpg" alt="Portfólio estilo verde limão">
-          <img src="modelos/romantico-rosa.jpg" alt="Portfólio estilo romântico rosa">
-          <img src="modelos/retro-y2k.jpg" alt="Portfólio estilo retrô Y2K">
-          <img src="modelos/coquette.jpg" alt="Portfólio estilo coquette">
-          <img src="modelos/streaming.jpg" alt="Portfólio estilo streaming">
+        <div class="hs-topbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="u">🔒 ugc.laradam.com</span></div>
+        <div class="hs-screen loading">
+          <iframe class="hs-site on" title="Meu portfólio (Lara)" data-src="https://ugc.laradam.com/" loading="lazy" referrerpolicy="no-referrer" scrolling="yes"></iframe>
+          <iframe class="hs-site" title="Portfólio da Julia" data-src="https://portfoliougcjulia.com/" loading="lazy" referrerpolicy="no-referrer" scrolling="yes"></iframe>
         </div>
       </div>
-      <div class="hs-dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
-      <div class="hs-clabel">+15 ESTILOS DE PORTFÓLIO</div>
+      <div class="hs-tabs">
+        <button type="button" class="hs-tab on" data-url="ugc.laradam.com">Meu portfólio</button>
+        <button type="button" class="hs-tab" data-url="portfoliougcjulia.com">Portfólio da Julia</button>
+      </div>
+      <div class="hs-clabel">↕ role aqui dentro pra ver o site de verdade</div>
       <div class="hs-grid">
         <div class="hs-item"><span class="em">🎨</span>+15 estilos prontos</div>
         <div class="hs-item"><span class="em">🌐</span>Hospedagem inclusa</div>
@@ -1019,20 +1024,33 @@
   window.addEventListener('scroll', toggleSticky, { passive:true });
   toggleSticky();
 
-  // Carrossel da capa: troca os portfólios sozinho + bolinhas clicáveis
+  // Capa: preview dos portfólios reais (iframes) com abas Lara / Julia
   (function(){
-    var frames = document.querySelectorAll('.hs-frames img');
-    var dots = document.querySelectorAll('.hs-dots i');
-    if(frames.length < 2) return;
-    var idx = 0, timer;
-    function go(n){
-      frames[idx].classList.remove('on'); if(dots[idx]) dots[idx].classList.remove('on');
-      idx = (n + frames.length) % frames.length;
-      frames[idx].classList.add('on'); if(dots[idx]) dots[idx].classList.add('on');
+    var screen = document.querySelector('.hs-screen');
+    var sites = document.querySelectorAll('.hs-site');
+    var tabs = document.querySelectorAll('.hs-tab');
+    var urlEl = document.querySelector('.hs-topbar .u');
+    if(!sites.length) return;
+    function ensure(f){
+      if(f && !f.getAttribute('src') && f.dataset.src){
+        f.addEventListener('load', function(){
+          f.classList.add('ready');
+          if(f.classList.contains('on') && screen) screen.classList.remove('loading');
+        });
+        f.setAttribute('src', f.dataset.src);
+      }
     }
-    function start(){ timer = setInterval(function(){ go(idx + 1); }, 2600); }
-    dots.forEach(function(d, i){ d.addEventListener('click', function(){ clearInterval(timer); go(i); start(); }); });
-    start();
+    function show(i){
+      sites.forEach(function(s, n){ s.classList.toggle('on', n === i); });
+      tabs.forEach(function(t, n){ t.classList.toggle('on', n === i); });
+      if(screen) screen.classList.toggle('loading', !sites[i].classList.contains('ready'));
+      ensure(sites[i]);
+      if(urlEl && tabs[i]) urlEl.textContent = '🔒 ' + tabs[i].dataset.url;
+    }
+    tabs.forEach(function(t, i){ t.addEventListener('click', function(){ show(i); }); });
+    // carrega o primeiro site só depois da página pronta, pra não travar o carregamento
+    if(document.readyState === 'complete'){ ensure(sites[0]); }
+    else { window.addEventListener('load', function(){ ensure(sites[0]); }); }
   })();
 </script>
 </body>
