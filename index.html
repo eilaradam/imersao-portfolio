@@ -315,11 +315,11 @@
   .hs-topbar i { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
   .hs-topbar .u { flex:1; max-width:230px; margin:0 auto; height:21px; background:#fff; border-radius:50px;
     display:flex; align-items:center; justify-content:center; font-size:11px; color:#6b7280; font-weight:600; }
-  .hs-screen { position:relative; height:330px; background:#0e0e10; }
+  .hs-screen { position:relative; height:330px; overflow:hidden; background:#0e0e10; }
   .hs-screen.loading::after { content:"carregando o site…"; position:absolute; inset:0; z-index:0;
     display:grid; place-items:center; color:#9fc2b1; font-size:13px; font-weight:600; }
-  .hs-site { position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
-    z-index:1; opacity:0; transition:opacity .4s ease; pointer-events:none; background:#fff; }
+  .hs-site { position:absolute; top:0; left:0; width:100%; height:100%; border:0; display:block;
+    transform-origin:top left; z-index:1; opacity:0; transition:opacity .4s ease; pointer-events:none; background:#fff; }
   .hs-site.on { pointer-events:auto; }
   .hs-site.on.ready { opacity:1; }
   .hs-tabs { display:flex; gap:8px; justify-content:center; margin:15px 0 11px; }
@@ -1031,6 +1031,24 @@
     var tabs = document.querySelectorAll('.hs-tab');
     var urlEl = document.querySelector('.hs-topbar .u');
     if(!sites.length) return;
+    var BASE = 1280; // largura "desktop" do site, encolhida pra caber na janela
+    function fit(){
+      if(!screen) return;
+      var W = screen.clientWidth, H = screen.clientHeight;
+      var desktop = window.innerWidth > 900;
+      sites.forEach(function(f){
+        if(desktop && W){
+          var s = W / BASE;
+          f.style.width = BASE + 'px';
+          f.style.height = Math.round(H / s) + 'px';
+          f.style.transform = 'scale(' + s + ')';
+        } else {
+          f.style.width = '100%';
+          f.style.height = '100%';
+          f.style.transform = 'none';
+        }
+      });
+    }
     function ensure(f){
       if(f && !f.getAttribute('src') && f.dataset.src){
         f.addEventListener('load', function(){
@@ -1048,6 +1066,8 @@
       if(urlEl && tabs[i]) urlEl.textContent = '🔒 ' + tabs[i].dataset.url;
     }
     tabs.forEach(function(t, i){ t.addEventListener('click', function(){ show(i); }); });
+    fit();
+    window.addEventListener('resize', fit, { passive:true });
     // carrega o primeiro site só depois da página pronta, pra não travar o carregamento
     if(document.readyState === 'complete'){ ensure(sites[0]); }
     else { window.addEventListener('load', function(){ ensure(sites[0]); }); }
