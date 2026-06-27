@@ -587,9 +587,15 @@
     .model-body { padding:12px 13px 15px; }
     .model-body h3 { font-size:14px; margin-bottom:2px; }
     .model-body p, .model-swatches { display:none; }
-    .dm-grid { grid-template-columns:1fr; gap:13px; }
-    .dm-sub { font-size:14.5px; }
-    .dm-bubble { font-size:14px; }
+    .dm-grid { grid-template-columns:repeat(2,1fr); gap:10px; align-items:start; }
+    .dm-sub { font-size:14px; }
+    .dm-card { padding:10px 11px 11px; border-radius:14px; }
+    .dm-top { gap:7px; margin-bottom:8px; }
+    .dm-ava { width:28px; height:28px; font-size:15px; }
+    .dm-name { width:52px; height:7px; }
+    .dm-ig { display:none; }
+    .dm-bubble { font-size:12px; padding:8px 11px; border-radius:13px 13px 13px 4px; }
+    .dm-time { display:none; }
     img, iframe, video { max-width:100%; }
   }
 </style>
