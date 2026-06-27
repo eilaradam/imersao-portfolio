@@ -192,7 +192,13 @@
   .dm-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:40px; }
   .dm-card { background:#fff; border-radius:18px; padding:15px 16px 13px; box-shadow:0 14px 30px rgba(0,0,0,.2); }
   .dm-top { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
-  .dm-ava { width:36px; height:36px; border-radius:50%; flex-shrink:0; background:linear-gradient(135deg,#feda75,#d62976 48%,#962fbf 78%,#4f5bd5); }
+  .dm-ava { width:36px; height:36px; border-radius:50%; flex-shrink:0; display:grid; place-items:center; font-size:19px; background:#f2f0ec; }
+  .dm-grid .dm-card:nth-child(1) .dm-ava::after { content:"😍"; }
+  .dm-grid .dm-card:nth-child(2) .dm-ava::after { content:"🥹"; }
+  .dm-grid .dm-card:nth-child(3) .dm-ava::after { content:"😅"; }
+  .dm-grid .dm-card:nth-child(4) .dm-ava::after { content:"😣"; }
+  .dm-grid .dm-card:nth-child(5) .dm-ava::after { content:"🤔"; }
+  .dm-grid .dm-card:nth-child(6) .dm-ava::after { content:"🤩"; }
   .dm-name { height:9px; width:84px; border-radius:5px; background:#e7e3dd; }
   .dm-ig { width:20px; height:20px; margin-left:auto; color:#c9c4bc; flex-shrink:0; }
   .dm-bubble { background:#efeeec; color:#1f2937; border-radius:16px 16px 16px 5px; padding:10px 14px; font-size:14.5px; line-height:1.42; margin-bottom:6px; width:fit-content; max-width:94%; }
