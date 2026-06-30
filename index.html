@@ -613,7 +613,7 @@
       </div>
       <h1>Em 2 dias, você vai construir o seu <span class="it">portfólio</span> completo do zero!</h1>
       <p class="lead">Um site profissional no <b>seu estilo</b>, feito com o Claude. Sem precisar saber design, sem Canva, sem complicação.</p>
-      <a href="#pricing" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
+      <a href="#pricing" class="btn-cta" data-cta="hero">Garantir meu ingresso <span class="arrow">→</span></a>
       <div class="hs-social">
         <span class="hs-av">
           <span style="background-image:url('fotos/lara.jpeg')"></span>
@@ -788,7 +788,7 @@
       <div>
         <h2>Você vai sair com <span class="it">site pronto para fechar marca.</span></h2>
         <p class="lead">Em 14 horas de imersão, você vai estruturar, criar e colocar online seu primeiro portfólio profissional. Tudo que você precisar customizar depois, você consegue fazer sozinha.</p>
-        <a href="#pricing" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
+        <a href="#pricing" class="btn-cta" data-cta="banner">Garantir meu ingresso <span class="arrow">→</span></a>
         <div class="progress" data-fill="12"><i></i></div>
         <div class="progress-label">12% dos ingressos vendidos</div>
       </div>
@@ -987,7 +987,7 @@
         <span class="badge">Lote Especial</span>
         <p class="price-old">De <s>R$397</s> por apenas</p>
         <div class="price-big">R$197</div>
-        <a href="https://pay.kiwify.com.br/sleBXfM" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
+        <a href="https://pay.kiwify.com.br/sleBXfM" class="btn-cta" data-cta="preco">Garantir meu ingresso <span class="arrow">→</span></a>
         <div class="progress" data-fill="12"><i></i></div>
         <div class="progress-label">12% dos ingressos vendidos</div>
         <div class="pay-icons">
@@ -1032,7 +1032,7 @@
       <div class="wa"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1112 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2a.4.4 0 000-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 00-.7.3 2.8 2.8 0 00-.9 2.1 4.9 4.9 0 001 2.6 11.2 11.2 0 004.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 001.6-1.2 2 2 0 00.2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg></div>
       <h4>Ainda tem dúvidas?</h4>
       <p>Fala com a nossa equipe pelo WhatsApp. A gente te ajuda a decidir.</p>
-      <a href="#" class="btn-cta">Falar com o suporte 💬</a>
+      <a href="#" class="btn-cta" data-cta="suporte">Falar com o suporte 💬</a>
     </div>
   </div>
 </section>
@@ -1045,7 +1045,7 @@
     <span class="eyebrow">🖥️ 100% online no Zoom | 11 e 12 de Julho · 10:00 às 17:00</span>
     <h2>Você se dedica todo dia criando conteúdo de qualidade. Tá na hora de um portfólio <span class="it">que trabalha por você 24h.</span></h2>
     <p>Garanta sua vaga agora e saia da imersão com o site no ar, pronto pra fechar marca.</p>
-    <a href="https://pay.kiwify.com.br/sleBXfM" class="btn-cta">Garantir meu ingresso <span class="arrow">→</span></a>
+    <a href="https://pay.kiwify.com.br/sleBXfM" class="btn-cta" data-cta="final">Garantir meu ingresso <span class="arrow">→</span></a>
     <div class="progress" data-fill="12" style="display:inline-block"><i></i></div>
     <div class="progress-label" style="color:#cfe6da">12% dos ingressos vendidos</div>
   </div>
@@ -1059,7 +1059,7 @@
 
 <div class="sticky-cta" id="stickyCta">
   <span class="sc-text">Imersão Portfolio Claude · <b>R$197</b> · vagas limitadas 🔥</span>
-  <a href="#pricing" class="btn-cta">Garantir meu ingresso →</a>
+  <a href="#pricing" class="btn-cta" data-cta="sticky">Garantir meu ingresso →</a>
 </div>
 
 <script>
@@ -1179,6 +1179,69 @@
     }
     tabs.forEach(function(t){ t.addEventListener('click', function(){ set(t.dataset.state); }); });
   })();
+</script>
+
+<!-- Analytics da Imersão: registra visitas e cliques nos botões (Supabase do creators) -->
+<script>
+(function(){
+  var SB_URL = 'https://mfrmnquvwwuxraqgemyh.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mcm1ucXV2d3d1eHJhcWdlbXloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwNDI1NDIsImV4cCI6MjA4NzYxODU0Mn0.zmsi08dV5L1IlXJSr34vOii71w0g0OsD5_5DKio5g-o';
+  var ENDPOINT = SB_URL + '/rest/v1/imersao_events';
+
+  // id estável do visitante (pra contar visitantes únicos)
+  function visitorId(){
+    try {
+      var k = 'imersao_vid', v = localStorage.getItem(k);
+      if(!v){
+        v = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+            : (Math.random().toString(36).slice(2) + Date.now().toString(36));
+        localStorage.setItem(k, v);
+      }
+      return v;
+    } catch(e){ return null; }
+  }
+
+  function send(row){
+    try {
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'apikey': SB_KEY,
+          'Authorization': 'Bearer ' + SB_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(row),
+        keepalive: true
+      }).catch(function(){});
+    } catch(e){ /* nunca quebra a página por falha de tracking */ }
+  }
+
+  var sid = visitorId();
+  function base(){
+    return {
+      session_id: sid,
+      page_path: location.pathname,
+      referrer: document.referrer || null,
+      user_agent: (navigator.userAgent || '').slice(0,500)
+    };
+  }
+
+  // 1) visita — uma por carregamento da página
+  var v = base(); v.event_type = 'visita'; send(v);
+
+  // 2) cliques nos botões (delegação; captura pra registrar antes de navegar pro checkout)
+  document.addEventListener('click', function(ev){
+    var el = (ev.target && ev.target.closest) ? ev.target.closest('.btn-cta') : null;
+    if(!el) return;
+    var href = el.getAttribute('href') || '';
+    var c = base();
+    c.event_type = 'clique';
+    c.cta = el.getAttribute('data-cta') || 'cta';
+    c.to_checkout = /kiwify|pay\./i.test(href);
+    send(c);
+  }, true);
+})();
 </script>
 </body>
 </html>
