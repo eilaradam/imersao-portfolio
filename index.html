@@ -38,6 +38,23 @@
     overflow-x: hidden;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    padding-top: 46px;
+  }
+
+  /* ─── TIMER FIXO NO TOPO ──────────────────── */
+  .topbar-timer {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: linear-gradient(90deg,#EF4444,#F97316);
+    color: #fff; text-align: center; font-size: 14.5px; font-weight: 700;
+    letter-spacing: .3px; padding: 12px 14px; box-shadow: 0 2px 14px rgba(0,0,0,.2);
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+  }
+  .topbar-timer b { font-weight: 800; }
+  .topbar-timer .cd-inline { font-variant-numeric: tabular-nums; letter-spacing: .5px; }
+  @media (max-width:600px){
+    body { padding-top: 42px; }
+    .topbar-timer { font-size: 13px; padding: 10px 12px; gap: 5px; }
+    .topbar-timer .tt-label { display: none; }
   }
 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
@@ -614,6 +631,7 @@
 </style>
 </head>
 <body>
+<div class="topbar-timer" id="topTimer">⏰ <b class="tt-label">ÚLTIMAS HORAS ·</b> vendas encerram em <b class="cd-inline">08:00:00</b></div>
 <script>document.documentElement.classList.add('js')</script>
 
 <!-- ═══ SEÇÃO 1 · HERO ═══ -->
@@ -665,7 +683,7 @@
 </section>
 
 <!-- ═══ SEÇÃO 2 · BARRA ANUNCIANTE ═══ -->
-<div class="announce">⏰ ÚLTIMAS HORAS · as vendas encerram em <b class="cd-inline" style="color:#ffd7c2">08:00:00</b></div>
+<div class="announce">Aproveite o Lote 1 · Vagas Limitadas 🔥</div>
 
 <!-- ═══ SEÇÃO 4 · PAIN POINTS ═══ -->
 <section>
@@ -1293,9 +1311,12 @@
 
   function pad(n){ return (n < 10 ? '0' : '') + n; }
 
+  var topTimer = document.getElementById('topTimer');
+
   function endSale(){
     ended = true;
     clocks.forEach(function(c){ c.classList.add('ended'); });
+    if(topTimer)  topTimer.innerHTML  = '🔒 VENDAS ENCERRADAS';
     if(announce)  announce.innerHTML  = '🔒 VENDAS ENCERRADAS';
     if(stickyTxt) stickyTxt.innerHTML = 'Imersão Portfolio Claude · 🔒 <b>Vendas encerradas</b>';
     document.querySelectorAll('.btn-cta').forEach(function(b){
