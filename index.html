@@ -1315,15 +1315,11 @@
 
   function endSale(){
     ended = true;
-    clocks.forEach(function(c){ c.classList.add('ended'); });
-    if(topTimer)  topTimer.innerHTML  = '🔒 VENDAS ENCERRADAS';
-    if(announce)  announce.innerHTML  = '🔒 VENDAS ENCERRADAS';
-    if(stickyTxt) stickyTxt.innerHTML = 'Imersão Portfolio Claude · 🔒 <b>Vendas encerradas</b>';
-    document.querySelectorAll('.btn-cta').forEach(function(b){
-      if(b.getAttribute('data-cta') === 'suporte') return;
-      b.classList.add('sold-out');
-      b.innerHTML = 'Vendas encerradas ⏰';
-    });
+    // Timer acabou: some com TODOS os contadores, mas as vendas seguem abertas.
+    if(topTimer){ topTimer.remove(); document.body.style.paddingTop = '0'; }
+    clocks.forEach(function(c){ c.style.display = 'none'; });
+    if(stickyTxt) stickyTxt.innerHTML = 'Imersão Portfolio Claude · <b>R$197</b> · vagas limitadas 🔥';
+    // botões de compra continuam ativos — nada é desabilitado
   }
 
   function tick(){
