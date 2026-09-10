@@ -65,6 +65,14 @@ p{margin:0 0 14px}
 }
 .lead{font-size:clamp(16px,3.8vw,18px);line-height:1.55;color:var(--tinta-2)}
 .sec-head{display:flex;align-items:center;gap:10px;margin-bottom:clamp(22px,4.5vw,34px)}
+.cabeca{text-align:center;max-width:32ch;margin:0 auto clamp(28px,5vw,44px)}
+.cabeca .olho{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--terra-tinta);display:flex;align-items:center;justify-content:center;gap:10px;margin:0 0 14px;
+}
+.cabeca .olho::before,.cabeca .olho::after{content:"";height:1px;width:24px;background:var(--terra);opacity:.45}
+.cabeca h2{font-size:clamp(24px,5.6vw,38px);line-height:1.06}
+.cabeca .sub{margin:12px auto 0;font-size:15px;line-height:1.55;color:var(--tinta-2);max-width:40ch}
 .faisca{width:17px;height:17px;fill:var(--terra);flex:none}
 
 /* ---------- botão ---------- */
@@ -168,19 +176,36 @@ p{margin:0 0 14px}
 .ad-item img{width:100%;height:auto;border:1px solid var(--linha);border-radius:6px;background:var(--branco);cursor:zoom-in}
 .ad-item figcaption{font-family:var(--mono);font-size:11.5px;line-height:1.5;color:var(--tinta-2);margin-top:8px}
 
-/* ---------- CARDS ---------- */
-.cards{display:grid;gap:16px}
-.card{background:var(--branco);border:1px solid var(--linha);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
-.card-top{background:var(--terra);padding:15px 18px}
-.card-top .dia{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);display:block;margin-bottom:4px}
-.card-top h3{color:var(--branco);text-transform:uppercase}
-.card-top .resumo{margin:6px 0 0;font-size:13.5px;line-height:1.4;color:rgba(255,255,255,.92)}
-.card ul{list-style:none;margin:0;padding:18px;display:grid;gap:14px;flex:1;align-content:start}
-.card li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start}
-.card .n{font-family:var(--mono);font-size:11px;color:var(--terra);letter-spacing:.06em;padding-top:3px}
-.card .it b{display:block;font-size:15px;line-height:1.3;color:var(--tinta)}
-.card .it span{display:block;font-size:14px;line-height:1.45;color:var(--tinta-2);margin-top:3px}
-.card .it .ph{margin-top:4px}
+/* ---------- CARDS DOS DIAS ---------- */
+.cards{display:grid;gap:18px}
+.card{
+  background:var(--branco);border:1px solid var(--linha);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(9,9,11,.04),0 18px 30px -26px rgba(9,9,11,.55);
+}
+.card-top{
+  display:flex;align-items:center;gap:14px;padding:16px 20px;
+  background:rgba(254,247,207,.6);border-bottom:1px solid var(--linha);
+}
+.card-num{
+  font-family:var(--display);font-weight:800;font-size:42px;line-height:.8;
+  letter-spacing:-.05em;color:var(--terra);
+}
+.card-top .dia{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2);display:block}
+.card-top h3{font-size:clamp(17px,4vw,20px);text-transform:uppercase;margin-top:4px;color:var(--tinta)}
+.card .resumo{
+  margin:0;padding:12px 20px;background:var(--quase-branco);border-bottom:1px solid var(--linha);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;line-height:1.5;color:var(--terra-tinta);
+}
+.card ul{list-style:none;margin:0;padding:6px 20px 18px;display:block;flex:1}
+.card li{
+  display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;
+  padding:14px 0;border-bottom:1px dashed rgba(9,9,11,.11);
+}
+.card li:last-child{border-bottom:0;padding-bottom:4px}
+.card .n{font-family:var(--mono);font-size:11px;color:var(--terra);letter-spacing:.04em;padding-top:3px}
+.card .it b{display:block;font-size:15.5px;line-height:1.3;color:var(--tinta)}
+.card .it span{display:block;font-size:14px;line-height:1.5;color:var(--tinta-2);margin-top:3px}
+.card .it .ph{margin-top:5px}
 
 /* entra com movimento ao rolar */
 .anima{transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)}
@@ -188,9 +213,18 @@ p{margin:0 0 14px}
 .js .anima.visivel{opacity:1;transform:none}
 
 /* ---------- faixa antes/depois ---------- */
-.faixa-grid{display:grid;gap:20px}
-.faixa-grid>div{border-left:2px solid var(--terra);padding-left:16px}
-.faixa p{margin:0;font-size:15px;line-height:1.6;color:var(--tinta-2);max-width:52ch}
+.trilha{display:grid;gap:14px;list-style:none;margin:0;padding:0;counter-reset:etapa}
+.etapa{background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:20px 18px}
+.etapa .marca{
+  display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--terra-tinta);background:rgba(204,124,94,.1);border:1px solid rgba(204,124,94,.28);
+  padding:5px 10px;border-radius:99px;margin-bottom:11px;
+}
+.etapa p{margin:0;font-size:14.5px;line-height:1.6;color:var(--tinta-2)}
+.etapa.viva{background:var(--terra);border-color:var(--terra);box-shadow:0 16px 30px -24px rgba(204,124,94,.9)}
+.etapa.viva .marca{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.45);color:#FFF}
+.etapa.viva p{font-family:var(--display);font-weight:700;font-size:clamp(17px,4.2vw,20px);line-height:1.25;color:#FFF;letter-spacing:-.02em}
+
 
 /* ---------- PROVA ---------- */
 .stat{font-family:var(--display);font-weight:700;font-size:clamp(19px,4vw,28px);line-height:1.15;letter-spacing:-.025em;margin:0 0 26px;max-width:24ch}
@@ -252,26 +286,26 @@ p{margin:0 0 14px}
 
 /* ---------- CAIXA DE VALOR ---------- */
 .valor{
-  background:var(--branco);border:1px solid var(--linha);border-radius:10px;
-  max-width:520px;margin:0 auto;overflow:hidden;text-align:left;
-  box-shadow:0 2px 0 rgba(9,9,11,.05);
+  background:var(--branco);border:1px solid rgba(204,124,94,.4);border-radius:18px;
+  max-width:600px;margin:0 auto;overflow:hidden;text-align:left;
+  box-shadow:0 2px 4px rgba(9,9,11,.04),0 30px 50px -34px rgba(9,9,11,.6);
 }
-.valor-topo{background:var(--terra);color:#FFF;padding:16px 20px}
+.valor-topo{background:var(--terra);color:#FFF;padding:18px 22px;text-align:center}
 .valor-topo .rot{color:rgba(255,255,255,.85);margin:0 0 4px}
 .valor-topo h3{color:#FFF;text-transform:uppercase}
-.valor-corpo{padding:20px}
-.inclui{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:9px}
+.valor-corpo{padding:22px}
+.inclui{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:11px}
 .inclui li{position:relative;padding-left:23px;font-size:14.5px;line-height:1.45}
 .inclui li::before{content:"";position:absolute;left:0;top:5px;width:11px;height:11px;background:var(--terra);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
 .inclui li b{font-weight:700}
 .preco-bloco{border-top:1px solid var(--linha);padding-top:18px;text-align:center}
-.de{font-family:var(--mono);font-size:12.5px;color:var(--tinta-2);margin:0 0 4px}
+.de{font-family:var(--mono);font-size:12.5px;color:var(--tinta-2);margin:0 0 6px}
 .de s{text-decoration-thickness:1.5px}
-.preco-cheio{font-family:var(--display);font-weight:800;font-size:clamp(28px,6.4vw,42px);letter-spacing:-.03em;color:var(--terra-tinta);display:block;line-height:1}
+.preco-cheio{font-family:var(--display);font-weight:800;font-size:clamp(40px,10vw,58px);letter-spacing:-.04em;color:var(--terra-tinta);display:block;line-height:.95}
 .parcela{font-family:var(--mono);font-size:12.5px;color:var(--tinta-2);margin:8px 0 16px}
 .janela{
-  background:rgba(190,58,34,.08);border:1px solid rgba(190,58,34,.25);border-radius:6px;
-  padding:12px 14px;margin:0 0 16px;
+  background:rgba(190,58,34,.07);border:1px solid rgba(190,58,34,.22);border-radius:10px;
+  padding:13px 14px;margin:0 0 18px;
 }
 .janela .rot{color:var(--vermelho);margin:0 0 6px}
 .janela .relogio{gap:10px;color:var(--vermelho)}
@@ -336,8 +370,11 @@ p{margin:0 0 14px}
   .antes-depois{gap:18px;align-self:center;justify-items:end}
   .antes-depois .ad-item{width:100%;max-width:400px}
   .cards{grid-template-columns:1fr 1fr}
-  .faixa-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .trilha{grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:stretch}
+  .etapa{padding:24px 22px}
   .prova-grid{grid-template-columns:repeat(3,1fr);gap:16px}
+  .inclui{grid-template-columns:1fr 1fr;gap:12px 20px}
+  .inclui li{font-size:14px}
   .mosaico{columns:3;column-gap:14px}
   .quem-grid{grid-template-columns:1fr 1fr}
   .card li{font-size:15.5px}
@@ -443,18 +480,19 @@ p{margin:0 0 14px}
 <!-- ============ 3. O QUE VOCÊ CONSTRÓI ============ -->
 <section class="bloco" id="constroi">
   <div class="wrap">
-    <div class="sec-head">
-      <svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg>
+    <div class="cabeca">
+      <p class="olho">Os dois dias</p>
       <h2>O que você constrói</h2>
+      <p class="sub">Você não sai com anotação. Sai com as coisas no ar.</p>
     </div>
 
     <div class="cards">
       <article class="card">
         <div class="card-top">
-          <span class="dia">Dia 19 · sábado</span>
-          <h3>Construir</h3>
-          <p class="resumo">Você termina o dia com tudo no ar.</p>
+          <span class="card-num">19</span>
+          <span><span class="dia">sábado</span><h3>Construir</h3></span>
         </div>
+        <p class="resumo">Você termina o dia com tudo no ar.</p>
         <ul>
           <li class="anima"><span class="n">01</span><div class="it"><b>Portfólio publicado</b><span>no seu domínio, captando lead pelo formulário</span></div></li>
           <li class="anima"><span class="n">02</span><div class="it"><b>Página de admin no ar</b><span>com login seu</span></div></li>
@@ -465,10 +503,10 @@ p{margin:0 0 14px}
 
       <article class="card">
         <div class="card-top">
-          <span class="dia">Dia 20 · domingo</span>
-          <h3>Fazer trabalhar</h3>
-          <p class="resumo">Você termina o dia com o site trabalhando por você.</p>
+          <span class="card-num">20</span>
+          <span><span class="dia">domingo</span><h3>Fazer trabalhar</h3></span>
         </div>
+        <p class="resumo">Você termina o dia com o site trabalhando por você.</p>
         <ul>
           <li class="anima"><span class="n">01</span><div class="it"><b>Aba Calendário</b><span>o que grava, edita e posta, na semana</span></div></li>
           <li class="anima"><span class="n">02</span><div class="it"><b>Aba Organização de Campanha</b><span>a mesma que eu uso pra tocar as minhas</span></div></li>
@@ -480,17 +518,23 @@ p{margin:0 0 14px}
   </div>
 </section>
 
-<!-- faixa antes e depois -->
+<!-- trilha: antes, os dois dias, depois -->
 <section class="bloco papel2 textura">
-  <div class="wrap faixa-grid">
-    <div>
-      <p class="rot">Antes da imersão</p>
-      <p>Aula gravada de configuração: instalar o Claude, criar conta, VS Code, comprar domínio, Supabase, GitHub. O básico chato já resolvido pra você chegar no dia 19 só pra construir.</p>
-    </div>
-    <div>
-      <p class="rot">Depois da imersão</p>
-      <p>Grupo das alunas, onde as dúvidas e os resultados aparecem, e a gravação dos dois dias disponível pra você.</p>
-    </div>
+  <div class="wrap">
+    <ol class="trilha">
+      <li class="etapa anima">
+        <span class="marca">Antes</span>
+        <p>Aula gravada de configuração: instalar o Claude, criar conta, VS Code, comprar domínio, Supabase, GitHub. O básico chato já resolvido pra você chegar no dia 19 só pra construir.</p>
+      </li>
+      <li class="etapa viva anima">
+        <span class="marca">19 e 20 · ao vivo</span>
+        <p>Dois dias ao vivo comigo, construindo junto com você.</p>
+      </li>
+      <li class="etapa anima">
+        <span class="marca">Depois</span>
+        <p>Grupo das alunas, onde as dúvidas e os resultados aparecem, e a gravação dos dois dias disponível pra você.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -530,11 +574,12 @@ p{margin:0 0 14px}
 <!-- ============ 4b. PROVA SOCIAL (grupo da turma 1) ============ -->
 <section class="bloco quase-branco" id="grupo">
   <div class="wrap">
-    <div class="sec-head">
-      <svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg>
+    <div class="cabeca">
+      <p class="olho">Prova</p>
       <h2>O que elas mandaram no grupo</h2>
+      <p class="sub">Prints do grupo da turma 1, durante e depois dos dois dias.</p>
     </div>
-    <p class="lead" style="max-width:46ch;margin:-14px 0 24px">Prints do grupo da turma 1, durante e depois dos dois dias.</p>
+    
     <div class="carrossel" id="carrossel" aria-label="Prints do grupo da turma 1">
       <div class="coluna">
         <div class="fita" style="--dur:64s">
@@ -584,7 +629,11 @@ p{margin:0 0 14px}
 <!-- ============ 6. INVESTIMENTO ============ -->
 <section class="bloco invest papel2 textura" id="investimento">
   <div class="wrap">
-    <h2>Investimento</h2>
+    <div class="cabeca">
+      <p class="olho">Turma 2</p>
+      <h2>Investimento</h2>
+      <p class="sub">Eu acompanho cada uma nos dois dias.</p>
+    </div>
     <div class="valor">
       <div class="valor-topo">
         <p class="rot">Imersão Portfólio</p>
@@ -617,7 +666,7 @@ p{margin:0 0 14px}
             </div>
           </div>
           <a class="btn" href="#" data-cta="preco" data-checkout="1">Quero meu portfólio e meu admin <span class="seta">&rarr;</span></a>
-          <p class="pos-btn">Eu acompanho cada uma nos dois dias.<br><span class="ph">[LINK DO CHECKOUT · trocar o href="#" deste botão e o do rodapé]</span></p>
+          <p class="pos-btn"><span class="ph">[LINK DO CHECKOUT · trocar o href="#" deste botão e o do rodapé]</span></p>
         </div>
       </div>
     </div>
