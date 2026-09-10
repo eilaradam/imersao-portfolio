@@ -150,11 +150,12 @@ p{margin:0 0 14px}
 .hero-foto img{width:100%;max-width:460px;height:auto}
 
 /* ---------- HISTÓRIA ---------- */
+.historia-grid{display:grid;gap:clamp(26px,5vw,40px)}
 .titulo-secao{
-  font-size:clamp(26px,6.4vw,44px);line-height:1;letter-spacing:-.03em;
-  margin:0 0 clamp(18px,3.5vw,28px);max-width:16ch;
+  font-size:clamp(26px,6.4vw,42px);line-height:1.02;letter-spacing:-.03em;
+  margin:0 0 clamp(16px,3vw,24px);max-width:14ch;
 }
-.historia-texto{margin-bottom:clamp(26px,5vw,40px)}
+.historia-texto{margin-bottom:0}
 .historia-texto p{font-size:15.5px;line-height:1.68;color:#2C2A28;margin:0 0 13px;break-inside:avoid}
 .historia-texto .abre{
   font-family:var(--display);font-weight:700;font-size:clamp(18px,4.2vw,22px);line-height:1.25;
@@ -194,12 +195,15 @@ p{margin:0 0 14px}
 /* ---------- PROVA ---------- */
 .stat{font-family:var(--display);font-weight:700;font-size:clamp(19px,4vw,28px);line-height:1.15;letter-spacing:-.025em;margin:0 0 26px;max-width:24ch}
 .stat span{color:var(--terra-tinta)}
-.prova-grid{display:grid;gap:16px}
-.aluna{background:var(--branco);border:1px solid var(--linha);border-radius:6px;padding:18px}
-.aluna h3{margin-bottom:11px}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;padding:0;list-style:none}
-.tags li{font-family:var(--mono);font-size:11px;background:var(--manteiga);border:1px solid rgba(9,9,11,.08);padding:5px 9px;border-radius:3px}
-.aluna .nota{font-size:13.5px;color:var(--tinta-2);margin:12px 0 0;font-style:italic}
+.prova-grid{display:grid;gap:14px}
+.aluna{
+  background:var(--branco);border:1px solid var(--linha);border-radius:8px;
+  padding:22px 20px;display:flex;flex-direction:column;
+}
+.aluna-marca{display:block;margin-bottom:12px;line-height:0}
+.aluna-marca .faisca{width:20px;height:20px}
+.aluna h3{margin:0 0 8px;font-size:clamp(17px,4vw,20px)}
+.aluna p{margin:0;font-size:15px;line-height:1.5;color:var(--tinta-2)}
 
 /* ---------- MOSAICO DE PRINTS ---------- */
 .mosaico{columns:2;column-gap:12px}
@@ -325,13 +329,15 @@ p{margin:0 0 14px}
   .hero-grid{grid-template-columns:1.02fr .98fr;gap:clamp(24px,4vw,44px)}
   .hero-foto img{max-width:500px;justify-self:end}
   .data-arte img{max-width:440px}
-  .historia-texto{columns:2;column-gap:44px;max-width:none}
-  .historia-texto .abre{column-span:all;max-width:22ch;font-size:26px}
-  .assinatura{column-span:all;font-size:19px;margin-top:22px!important}
-  .antes-depois{grid-template-columns:1fr 1fr;gap:26px;max-width:780px}
+  .historia-grid{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:clamp(36px,5vw,60px);align-items:center}
+  .historia-texto{max-width:50ch}
+  .historia-texto .abre{font-size:24px;max-width:24ch}
+  .assinatura{font-size:19px;margin-top:20px!important}
+  .antes-depois{gap:18px;align-self:center;justify-items:end}
+  .antes-depois .ad-item{width:100%;max-width:400px}
   .cards{grid-template-columns:1fr 1fr}
   .faixa-grid{grid-template-columns:1fr 1fr;gap:40px}
-  .prova-grid{grid-template-columns:1fr 1fr}
+  .prova-grid{grid-template-columns:repeat(3,1fr);gap:16px}
   .mosaico{columns:3;column-gap:14px}
   .quem-grid{grid-template-columns:1fr 1fr}
   .card li{font-size:15.5px}
@@ -405,7 +411,8 @@ p{margin:0 0 14px}
 
 <!-- ============ 2. MINHA HISTÓRIA ============ -->
 <section class="bloco quase-branco textura">
-  <div class="wrap">
+  <div class="wrap historia-grid">
+   <div class="historia-col">
     <h2 class="titulo-secao">Por que eu criei isso? 👀</h2>
 
     <div class="historia-texto">
@@ -416,6 +423,7 @@ p{margin:0 0 14px}
       <p>Da primeira turma, <b class="grifo">mais de 40 alunas saíram com site no ar</b>. Nenhuma sabia programar. Elas aprenderam comigo a pedir.</p>
       <p class="assinatura">É isso que a imersão ensina.</p>
     </div>
+   </div>
 
     <div class="antes-depois">
       <figure class="ad-item">
@@ -492,25 +500,27 @@ p{margin:0 0 14px}
     <p class="stat">E algumas foram <span>muito além</span> do portfólio.</p>
     <div class="prova-grid">
       <article class="aluna">
+        <span class="aluna-marca" aria-hidden="true">
+          <svg class="faisca" viewBox="0 0 24 24"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg>
+        </span>
         <h3>A Bruna</h3>
-        <ul class="tags">
-          <li>rotina</li>
-          <li>link na bio</li>
-          <li>aba de notícias do nicho</li>
-        </ul>
-        <div class="ph-box"><span>[ PRINT DO SITE / DAS ABAS DA BRUNA ]</span></div>
-        <p class="nota">Não sabia programar. Aprendeu a pedir.</p>
+        <p>Montou rotina, link na bio e uma aba de notícias do nicho.</p>
       </article>
 
       <article class="aluna">
+        <span class="aluna-marca" aria-hidden="true">
+          <svg class="faisca" viewBox="0 0 24 24"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg>
+        </span>
         <h3>A Edilaine</h3>
-        <ul class="tags">
-          <li>financeiro do casal</li>
-          <li>métricas</li>
-          <li>automação de direct</li>
-        </ul>
-        <div class="ph-box"><span>[ PRINT DO SITE / DAS ABAS DA EDILAINE ]</span></div>
-        <p class="nota">Não sabia programar. Aprendeu a pedir.</p>
+        <p>Fez o financeiro do casal, métricas e a própria automação de direct.</p>
+      </article>
+
+      <article class="aluna">
+        <span class="aluna-marca" aria-hidden="true">
+          <svg class="faisca" viewBox="0 0 24 24"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg>
+        </span>
+        <h3>A Aline</h3>
+        <p>Criou o próprio app de gestão de campanha e abriu uma empresa.</p>
       </article>
     </div>
   </div>
