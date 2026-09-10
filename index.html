@@ -373,8 +373,14 @@ p{margin:0 0 14px}
   .trilha{grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:stretch}
   .etapa{padding:24px 22px}
   .prova-grid{grid-template-columns:repeat(3,1fr);gap:16px}
-  .inclui{grid-template-columns:1fr 1fr;gap:12px 20px}
-  .inclui li{font-size:14px}
+  .valor{max-width:900px}
+  .valor-corpo{display:grid;grid-template-columns:1.02fr .98fr;gap:0;padding:26px 28px}
+  .inclui{margin:0;padding-right:30px;align-content:start}
+  .inclui li{font-size:14.5px}
+  .preco-bloco{
+    border-top:0;border-left:1px solid var(--linha);
+    padding:2px 0 2px 30px;margin:0;display:flex;flex-direction:column;justify-content:center;
+  }
   .mosaico{columns:3;column-gap:14px}
   .quem-grid{grid-template-columns:1fr 1fr}
   .card li{font-size:15.5px}
