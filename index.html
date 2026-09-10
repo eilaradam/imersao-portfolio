@@ -158,6 +158,19 @@ p{margin:0 0 14px}
 .hero-foto{position:relative;display:grid;justify-items:center}
 .hero-foto img{width:100%;max-width:460px;height:auto}
 
+/* ---------- BARRA DE PALAVRAS ---------- */
+.marquise{background:var(--terra);overflow:hidden;padding:11px 0;border-top:1px solid rgba(9,9,11,.06);border-bottom:1px solid rgba(9,9,11,.06)}
+.marquise-fita{display:flex;align-items:center;gap:14px;width:max-content;animation:corre 46s linear infinite}
+.marquise span{
+  font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-.01em;
+  color:#FFF;white-space:nowrap;
+}
+.marquise .faisca{width:12px;height:12px;fill:rgba(255,255,255,.75)}
+.marquise:hover .marquise-fita{animation-play-state:paused}
+@keyframes corre{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (min-width:820px){.marquise span{font-size:15.5px}.marquise-fita{gap:18px}}
+@media (prefers-reduced-motion:reduce){.marquise-fita{animation:none}}
+
 /* ---------- HISTÓRIA ---------- */
 .historia-grid{display:grid;gap:clamp(26px,5vw,40px)}
 .titulo-secao{
@@ -269,6 +282,23 @@ p{margin:0 0 14px}
 .col.nao li::before{content:"";position:absolute;left:1px;top:10px;width:12px;height:1.5px;background:var(--cinza)}
 .col.nao .destaque{margin:14px 0 0;font-family:var(--display);font-weight:700;font-size:17px;line-height:1.25;color:var(--tinta)}
 
+/* ---------- QUEM É A LARA ---------- */
+.quem-grid{display:grid;gap:clamp(22px,5vw,44px);align-items:center}
+.quem-foto img{width:100%;max-width:300px;height:auto;border-radius:16px;border:1px solid var(--linha);margin:0 auto}
+.olho-esq{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--terra-tinta);margin:0 0 12px;display:flex;align-items:center;gap:10px;
+}
+.olho-esq::after{content:"";height:1px;flex:1;max-width:60px;background:var(--terra);opacity:.45}
+.quem-txt h2{font-size:clamp(24px,5.6vw,36px);line-height:1.06;margin-bottom:8px}
+.quem-cargo{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--tinta-2);margin:0 0 16px}
+.quem-txt p{font-size:15.5px;line-height:1.65;color:#2C2A28;max-width:46ch}
+.numeros{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 18px;padding:0}
+.numeros li{border-left:2px solid var(--terra);padding-left:12px}
+.numeros b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(20px,5vw,26px);letter-spacing:-.03em;color:var(--tinta);line-height:1}
+.numeros span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2);margin-top:5px}
+.quem-txt .arroba{margin-top:4px}
+
 /* ---------- INVESTIMENTO ---------- */
 .invest{text-align:center;overflow:hidden}
 .invest h2{margin-bottom:20px}
@@ -375,6 +405,9 @@ p{margin:0 0 14px}
   .trilha{grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:stretch}
   .etapa{padding:24px 22px}
   .prova-grid{grid-template-columns:repeat(3,1fr);gap:16px}
+  .quem-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(34px,5vw,56px)}
+  .quem-foto img{max-width:340px}
+  .numeros{grid-template-columns:repeat(4,1fr);gap:16px}
   .valor{max-width:900px}
   .valor-corpo{display:grid;grid-template-columns:1.02fr .98fr;gap:0;padding:26px 28px}
   .inclui{margin:0;padding-right:30px;align-content:start}
@@ -457,6 +490,12 @@ p{margin:0 0 14px}
   </div>
 </header>
 
+
+<!-- barra de palavras rodando -->
+<div class="marquise" aria-hidden="true">
+  <div class="marquise-fita"><span>Portfólio publicado</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Página de admin</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Sem saber programar</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Abordagem de marca</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Aba Calendário</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Organização de campanha</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Leads e clientes</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Envio de email</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Checklist Avançado</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>19 e 20 de setembro</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Ao vivo</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Portfólio publicado</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Página de admin</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Sem saber programar</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Abordagem de marca</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Aba Calendário</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Organização de campanha</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Leads e clientes</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Envio de email</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Checklist Avançado</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>19 e 20 de setembro</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg><span>Ao vivo</span><svg class="faisca" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c.9 5.6 5.5 10.2 11.1 11.1C17.5 12 12.9 16.6 12 22.2 11.1 16.6 6.5 12 .9 11.1 6.5 10.2 11.1 5.6 12 0Z"/></svg></div>
+</div>
+
 <!-- ============ 2. MINHA HISTÓRIA ============ -->
 <section class="bloco quase-branco textura">
   <div class="wrap historia-grid">
@@ -531,25 +570,6 @@ p{margin:0 0 14px}
   </div>
 </section>
 
-<!-- trilha: antes, os dois dias, depois -->
-<section class="bloco papel2 textura">
-  <div class="wrap">
-    <ol class="trilha">
-      <li class="etapa anima">
-        <span class="marca">Antes</span>
-        <p>Aula gravada de configuração: Claude, VS Code, domínio, Supabase e GitHub. O chato já resolvido antes do dia 19.</p>
-      </li>
-      <li class="etapa viva anima">
-        <span class="marca">19 e 20 · ao vivo</span>
-        <p>Dois dias ao vivo comigo, construindo junto com você.</p>
-      </li>
-      <li class="etapa anima">
-        <span class="marca">Depois</span>
-        <p>Grupo das alunas, onde as dúvidas e os resultados aparecem, e a gravação dos dois dias disponível pra você.</p>
-      </li>
-    </ol>
-  </div>
-</section>
 
 <!-- ============ 4. PROVA ============ -->
 <section class="bloco">
@@ -642,6 +662,29 @@ p{margin:0 0 14px}
   </div>
 </section>
 
+
+
+<!-- ============ QUEM É A LARA DAM ============ -->
+<section class="bloco quase-branco textura" id="quem-sou">
+  <div class="wrap quem-grid">
+    <div class="quem-foto">
+      <img src="img/lara-retrato.jpg" width="420" height="420" alt="Lara Dam" loading="lazy" decoding="async">
+    </div>
+    <div class="quem-txt">
+      <p class="olho olho-esq">Quem te ensina</p>
+      <h2>Quem é a Lara Dam?</h2>
+      <p class="quem-cargo">UGC creator e estrategista de conteúdo</p>
+      <p>Eu gerencio campanha pra marca e escolho creator toda semana. Abro dezenas de portfólios e fecho a maioria em menos de um minuto.</p>
+      <ul class="numeros">
+        <li><b>+500</b><span>vídeos</span></li>
+        <li><b>+200</b><span>marcas parceiras</span></li>
+        <li><b>100M+</b><span>views</span></li>
+        <li><b>+40</b><span>alunas com site no ar</span></li>
+      </ul>
+      <a class="arroba" href="https://instagram.com/eilaradam" target="_blank" rel="noopener">@eilaradam</a>
+    </div>
+  </div>
+</section>
 
 <!-- ============ 6. INVESTIMENTO ============ -->
 <section class="bloco invest papel2 textura" id="investimento">
